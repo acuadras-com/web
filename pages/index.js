@@ -1,19 +1,22 @@
 import fetch from 'isomorphic-fetch'
+import Link from 'next/link'
+
 const Stores = ({ channels }) => ( <>
     <header> 
-    <img src = "/logo-nobg.png" alt = "TuTendero.com"/>     
-        </header>
-
+        <img src = "/logo-nobg.png" alt = "TuTendero.com"/>     
+    </header>
     
     <div className = "channels" > 
-    
-    {
-        channels.map(channel => ( 
-        <div className = "channel" key = { channel.id } >
-            <img src = { channel.urls.logo_image.original } alt = "" / >
-            <h2> { channel.title } </h2> </div>
-        ))
-    } </div> 
+        {channels.map(channel => ( 
+            <Link href ="/channel">
+            <a className = "channel" key = { channel.id } >
+                <img src = { channel.urls.logo_image.original } alt = "" / >
+                <h2> { channel.title } </h2> 
+            </a>
+            </Link>
+        )) } 
+    </div> 
+
     <style jsx > { `
         header {
             background: #ECF4EF;
