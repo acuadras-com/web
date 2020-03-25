@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import demoScreen1 from './img/search-internet.png';
 
 export const HeroComponent = (props)=>{
 
@@ -16,7 +16,7 @@ export const HeroComponent = (props)=>{
             <div className="device-mockup iphone6_plus portrait white">
               <div className="device">
                 <div className="screen">
-                  <img src="/search-internet.png" className="img-fluid" alt="" />
+                  <img src={demoScreen1} className="img-fluid" alt="" />
                 </div>
                 <div className="button">
                 </div>

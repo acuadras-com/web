@@ -48,7 +48,7 @@ export class NavBarComponent extends Component{
       <>
       <nav className={`navbar navbar-expand-lg navbar-light fixed-top ${this.props.navBarShrink}`} id="mainNav">
         <div className="container">
-        <img src="/logo-nobg.png" alt="logo"  height="50px"    width="200px" />
+        <img src="/img/logo-nobg.png" alt="logo"  height="50px"    width="200px" />
           <button onClick={this.toggleShow.bind(this)} className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i className="fa fa-bars"></i>
