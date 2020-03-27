@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
+import './style.css';
+import 'simple-line-icons/css/simple-line-icons.css';
 import featureScreen from './img/2.png';
 
-
 export const FeaturesComponent = (props)=>{
-  return <>
-  <section className="features" id="features">
+  return <section className="features" id="features">
     <div className="container">
       <div className="section-heading text-center">
         <h2>Una herramienta para aumentar tus ventas</h2>
@@ -64,41 +64,4 @@ export const FeaturesComponent = (props)=>{
       </div>
     </div>
   </section>
-
-  <style jsx > { `
-section.features .section-heading {
-  margin-bottom: 100px; }
-  section.features .section-heading h2 {
-    margin-top: 0; }
-  section.features .section-heading p {
-    margin-bottom: 0; }
-
-section.features .device-container,
-section.features .feature-item {
-  max-width: 325px;
-  margin: 0 auto; }
-
-section.features .device-container {
-  margin-bottom: 100px; }
-  @media (min-width: 992px) {
-    section.features .device-container {
-      margin-bottom: 0; } }
-
-section.features .feature-item {
-  padding-top: 50px;
-  padding-bottom: 50px;
-  text-align: center; }
-  section.features .feature-item h3 {
-    font-size: 30px; }
-  section.features .feature-item i {
-    font-size: 80px;
-    display: block;
-    margin-bottom: 15px;
-    background: -webkit-linear-gradient(to left, #7b4397, rgb(52, 202, 6));
-    background: linear-gradient(to left, #7b4397,rgb(52, 202, 6));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; }
-` } 
-</style>
-  </>
 };
