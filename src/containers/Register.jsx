@@ -71,10 +71,10 @@ const Register = () => {
   };
 
   const RegistroExitoso = () => {
-    return <div className="registroExitoso">
-      <h3>Felicitaciones! Ahora haces parte de TuTendero, proximamente nos comunicaremos para continuar con el proceso</h3>
+    return <>
+      <div className="registroExitoso">Felicitaciones! Ahora haces parte de TuTendero, proximamente nos comunicaremos para continuar con el proceso</div>
       <a href="">Iniciar sesión</a>
-    </div>
+    </>
   }
   return (
       <section className="register">
