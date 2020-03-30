@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import {saveUser} from '../actions';
 
@@ -69,6 +69,10 @@ const Register = () => {
       setActionState ({sending: false, error: error, });
     }
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, actionState.error)
 
   const RegistroExitoso = () => {
     return <>
