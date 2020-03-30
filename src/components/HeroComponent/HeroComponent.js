@@ -12,7 +12,7 @@ export const HeroComponent = (props)=>{
           <div className="header-content mx-auto">
             <h1 className="mb-5">Permite que clientes cercanos te encuentren y te hagan pedidos</h1>
             <Link to="registro">
-            <a href="#" className="btn btn-outline btn-xl js-scroll-trigger">Uneté Ahora Totalmente gratis</a>
+              <div className="btn btn-outline btn-xl js-scroll-trigger">Uneté Ahora Totalmente gratis</div>
             </Link>
           </div>
         </div>

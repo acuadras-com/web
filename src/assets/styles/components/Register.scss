@@ -6,6 +6,7 @@
     justify-content: center;
     padding: 0px 30px;
     min-height: calc(100vh - 200px); /* El ancho será igual al tamaño de todo el height menos 200px (100px del header + 100px del footer) */
+    color: white;
   }
   
   .register__container {
@@ -19,21 +20,12 @@
     justify-content: space-around;
     min-height: 600px;
     padding: 60px 68px 40px;
-  }  
+    width: 500px;
+  }
+  
   .register__container--form {
     display: flex;
     flex-direction: column;
-  }
-  
-  .register__container a {
-    color: white;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-  }
-  
-  .register__container a:hover {
-    text-decoration: underline;
   }
   .input {
     background-color: transparent;
@@ -44,7 +36,7 @@
     color: white;
     font-family: 'Muli', sans-serif;
     font-size: 16px;
-    height: 50px;
+    height: 40px;
     margin-bottom: 20px;
     outline: none;
     padding: 0px 20px;
@@ -55,7 +47,8 @@
   }
 
   .button {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
+    
     border: none;
     border-radius: 25px;
     color: white;
@@ -67,7 +60,41 @@
     letter-spacing: 1px;
     margin: 10px 0px;
   }
+  .button2 {
+    background-color: rgba(255, 255, 255, 0.3);
+    background-image: url('./ZKZg.gif');
+    background-size: 10%;
+    background-position-x: 90%;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Muli', sans-serif;
+    height: 50px;
+    letter-spacing: 1px;
+    margin: 10px 0px;
+  }
+  .spanServiceError {
+    width: 200px;
+    color: darkorange;
+    text-align: center;
+    padding-top: 70px;
+  }
+
+  .spanInputError {
+    color: darkorange;
+  }
   
+  .registroExitoso {
+    width: 50%;
+    text-align: center;
+    padding-top: 28px;
+    
+  }
   @media only screen and (max-width: 600px) {
     .register__container {
       background-color: transparent;
@@ -76,4 +103,8 @@
       padding: 0px;
       width: 100%;
     }
+    .a{
+      text-align: center;
+    }
+    
   }
