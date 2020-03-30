@@ -10,18 +10,18 @@ export const SocialComponent = (props)=>{
         </h2>
       <ul className="list-inline list-social">
         <li className="list-inline-item social-twitter">
-          <a href="#">
+          <a href="https://twitter.com/TenderoTu">
             <i className="fa fa-twitter"></i>
           </a>
         </li>
         <li className="list-inline-item social-facebook">
-          <a href="#">
+          <a href="https://www.facebook.com/Tutendero-101573884837656">
             <i className="fa fa-facebook"></i>
           </a>
         </li>
         <li className="list-inline-item social-google-plus">
-          <a href="#">
-            <i className="fa fa-google-plus"></i>
+          <a href="https://www.instagram.com/tutendero.co/">
+            <i className="fa fa-instagram"></i>
           </a>
         </li>
       </ul>
