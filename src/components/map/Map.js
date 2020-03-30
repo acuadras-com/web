@@ -207,15 +207,28 @@ class Map extends Component{
 		})
 	};
 
-
 	render(){
 		const AsyncMap = withScriptjs(
 			withGoogleMap(
 				props => (
 					<GoogleMap google={ this.props.google }
 					           defaultZoom={ this.props.zoom }
-					           defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
+							   defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
+							   styles={[{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"color":"#000000"},{"lightness":13}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#144b53"},{"lightness":14},{"weight":1.4}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#08304b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#0c4152"},{"lightness":5}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#0b434f"},{"lightness":25}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#0b3d51"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"}]},{"featureType":"transit","elementType":"all","stylers":[{"color":"#146474"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#021019"}]}]}
+
 					>
+						{/* For Auto complete Search Box */}
+						<Autocomplete
+							style={{
+								width: '100%',
+								height: '40px',
+								paddingLeft: '16px',
+								marginTop: '10px',
+								marginBottom: '50px'
+							}}
+							onPlaceSelected={ this.onPlaceSelected }
+							types={['(regions)']}							
+						/>
 						{/* InfoWindow on top of marker */}
 						<InfoWindow
 							onClose={this.onInfoWindowClose}
@@ -232,19 +245,7 @@ class Map extends Component{
 						        onDragEnd={ this.onMarkerDragEnd }
 						        position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}
 						/>
-						<Marker />
-						{/* For Auto complete Search Box */}
-						<Autocomplete
-							style={{
-								width: '100%',
-								height: '40px',
-								paddingLeft: '16px',
-								marginTop: '2px',
-								marginBottom: '500px'
-							}}
-							onPlaceSelected={ this.onPlaceSelected }
-							types={['(regions)']}
-						/>
+						<Marker />						
 					</GoogleMap>
 				)
 			)
@@ -252,13 +253,7 @@ class Map extends Component{
 		let map;
 		if( this.props.center.lat !== undefined ) {
 			map = <div>
-				<div>
-					<div className="form-group">
-						<label htmlFor="">Address</label>
-						<input type="text" name="address" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.address }/>
-					</div>
-				</div>
-
+				<h5>Ingresa tu dirección y selecciona tu ubicación en el mapa</h5>				
 				<AsyncMap
 					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0&libraries=places"
 					loadingElement={
@@ -277,5 +272,6 @@ class Map extends Component{
 		}
 		return( map )
 	}
+	
 }
 export default Map
