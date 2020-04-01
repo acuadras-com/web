@@ -15,7 +15,7 @@ const Register = () => {
   const [passError, setPassError] 
     = useState('');
 
-  const validataePassword = (targetValue, otherValue) => {
+  const validatePassword = (targetValue, otherValue) => {
     
     if(otherValue){
       targetValue != otherValue
@@ -39,10 +39,10 @@ const Register = () => {
     
     if(event.target.name === 'confirmPassword') {
       
-      validataePassword(event.target.value, form.password)
+      validatePassword(event.target.value, form.password)
     }
     if(event.target.name === 'password') {
-      validataePassword(event.target.value, form.confirmPassword)
+      validatePassword(event.target.value, form.confirmPassword)
     }
   }
 
