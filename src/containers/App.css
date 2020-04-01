@@ -80,7 +80,7 @@
    font-size: 11px;
    padding: 15px 45px; }
 
-   .form-input {
+  .form-input {
     font-family: "TT Norms", "TT Norms-fallback", proxima-nova, "Helvetica Neue", Verdana, Arial, Helvetica, sans-serif;
     color: rgb(34, 34, 34);
     word-spacing: 0.16rem;
@@ -94,5 +94,47 @@
     padding: 1rem;
     font-size: 1rem;
     font-weight: 500;
-  }
+ }
+
+.input-group-addon{
+  border-width: 1px;
+  border-style: solid;
+  border-color: #767676;
+  border-image: initial;
+  border-radius: 2px;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.form-button-custom{
+  border-radius: 0px !important;
+  border-radius: 0px !important;
+  background-color: #009c5b;
+  color: white;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #009c86;
+  cursor: pointer;
+}
+.form-button-custom:hover{
+  background-color: #00633a;
+  border-color: #00633a;
+}
+.button-login-face{
+  font-family: Helvetica,sans-serif;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: calc(.27548vw + 12.71074px);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color .3s,border-color .3s;
+  background-color: #4c69ba;
+  border: calc(.06887vw + .67769px) solid #4c69ba;
+  padding: calc(.34435vw + 13.38843px) calc(.34435vw + 18.38843px);
+}
  
