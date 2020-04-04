@@ -1,0 +1,23 @@
+.shop-section{
+    box-shadow: 0 1px rgba(255,255,255,.5);
+    min-height: 300px;
+}
+.profile-picture{
+    height: 300px !important;
+    background-size: contain;
+}
+.div-profile-header{
+    padding-left: 0;
+    padding-right: 0;
+}
+.title-information{
+    background-color: #e5e5e5;
+    font-weight: 500;
+    margin-left: -15px;
+    margin-right: -15px;
+    padding: 15px 0;
+    padding-left: 10px;    
+}
+.no-padding{
+    padding: 0;
+}
