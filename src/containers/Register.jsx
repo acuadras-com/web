@@ -10,7 +10,7 @@ import { ControlLabel } from 'react-bootstrap';
 
 const Register = () => {
 
-  const coreBaseUrl = 'http://localhost:9072/tutendero';
+  const coreBaseUrl = 'http://3.21.21.68:9072/tutendero';
 
   const [form, setValues] = 
       useState ({email: 'jorge.j400@gmail.com', });
@@ -52,6 +52,7 @@ const Register = () => {
 
   const handleSubmit = event  => {
     event.preventDefault();
+
     saveUser();
   }
 
