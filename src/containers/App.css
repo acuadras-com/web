@@ -139,10 +139,9 @@
 }
 
 .default-container{
-  box-shadow: 0 0 2px rgba(10, 10, 10, 0.5);
   margin: 67px auto;
   max-width: 900px;
-  padding: 0;
+  padding: 0 15px;
 }
 
 #root{

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import {saveUser} from '../actions';
+import {Link} from 'react-router-dom';
 
 import './App.css';
 import '../assets/styles/components/Register.scss'

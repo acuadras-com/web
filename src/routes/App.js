@@ -6,6 +6,8 @@ import {Register as CustomerRegister}  from '../containers/customer/Register'
 import NotFound from '../containers/NotFound'
 import Layout from '../components/LayoutComponent/Layout'
 import {Profile} from '../containers/shop/Profile'
+import SettingProfile from '../containers/shop/SettingProfile';
+
 
 const App = () => (
     <BrowserRouter>
@@ -15,6 +17,7 @@ const App = () => (
                 <Route exact path="/registro" component={Register} />
                 <Route exact path="/registro-usuario" component={CustomerRegister} />
                 <Route exact path="/perfil-comercio" component={Profile} />
+                <Route exact path="/setting-profile-shop" component={SettingProfile} />
                 <Route component={NotFound} />
             </Switch>
         </Layout>
