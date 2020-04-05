@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { saveUser } from '../actions';
 import Axios from 'axios';
+import {Link} from 'react-router-dom';
 
 import './App.css';
 import '../assets/styles/components/Register.scss'
