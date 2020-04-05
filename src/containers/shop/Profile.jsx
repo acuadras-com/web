@@ -1,9 +1,9 @@
-import React, { useState,Fragment } from 'react'
+import React, { useState } from 'react'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
+import Nav from 'react-bootstrap/Nav'
 import '../../assets/styles/components/shop/Profile.scss'
 import { GoogleMap,withGoogleMap,Marker,withScriptjs } from 'react-google-maps'
 import profilePicture from '../../assets/styles/components/shop/carniceria.png'
@@ -15,8 +15,8 @@ export const Profile = (props) => {
         description: props.description !== undefined && props.description !== '' ? props.description :
             "Descripción de su comercio, los productos que venden, la historia o cualquier aspecto relevante de su negocio",
         profilePicture: props.profilePicture !== undefined && props.profilePicture !== '' ? props.profilePicture : profilePicture,
-        lat: props.lat !== undefined && props.lat !== '' ? props.lat : '4.5994',
-        lng: props.lat !== undefined && props.lat !== '' ? props.lat : '74.0771',
+        lat: props.lat !== undefined && props.lat !== '' ? props.lat : 4.5994,
+        lng: props.lat !== undefined && props.lat !== '' ? props.lat : 74.0771,
         schedule : {
             monday: props.schedule != undefined && props.schedule.monday != undefined && props.schedule.monday !=''? props.schedule.monday: '8 a.m - 5 p.m.',
             tuesday: props.schedule != undefined && props.schedule.tuesday != undefined && props.schedule.tuesday !=''? props.schedule.tuesday: '8 a.m - 5 p.m.',
@@ -25,8 +25,12 @@ export const Profile = (props) => {
             friday: props.schedule != undefined && props.schedule.friday != undefined && props.schedule.friday !=''? props.schedule.friday: '8 a.m - 5 p.m.',
             saturday: props.schedule != undefined && props.schedule.saturday != undefined && props.schedule.saturday !=''? props.schedule.saturday: '8 a.m - 5 p.m.',
             sunday: props.schedule != undefined && props.schedule.sunday != undefined && props.schedule.sunday !=''? props.schedule.sunday: '8 a.m - 5 p.m.',
-        }
+        },
+        contactNumber: props.contactNumber !== undefined && props.contactNumber !== '' ? props.contactNumber : "313 244 5618",
+        domicilie: props.domicilie !== undefined && props.domicilie !== '' ? props.domicilie : "Si"
     });
+
+    const [isDescriptionHidden, setDescriptionFlag] = useState(false)
 
     const MapWithAMarker = withScriptjs(withGoogleMap(props =>
         <GoogleMap
@@ -39,6 +43,17 @@ export const Profile = (props) => {
         </GoogleMap>
     ));
 
+
+   const handleNavClicDescription = event  => {
+    event.preventDefault();
+    setDescriptionFlag(false)        
+   }
+
+   const handleNavContact = event  => {
+    event.preventDefault();
+    setDescriptionFlag(true)        
+   }
+
     return (
         <section className="default-container">
             <section className="no-padding col-xs-12 col-sm-12">
@@ -50,12 +65,28 @@ export const Profile = (props) => {
                     </Col>
                     <Col className="div-profile-header">
                         <Card className="profile-picture">
-                            <Card.Header><Card.Title>{shop.nameShop}</Card.Title></Card.Header>
-                            <Card.Body>
+                            <Card.Header>
+                                <Row><Nav variant="tabs" defaultActiveKey={`${isDescriptionHidden ? "#contact" : "#description"}`}>
+                                    <Nav.Item>
+                                        <Nav.Link href="#description" onClick={handleNavClicDescription}>Descripción</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link href="#contact" onClick={handleNavContact}>Datos de contacto</Nav.Link>
+                                    </Nav.Item>
+                                </Nav></Row>
+                            </Card.Header>
+                            <Card.Body className={`${isDescriptionHidden ? "hide" : ""}`}>
                                 <Card.Text>
-                                    {shop.description}
+                                    {shop.description}                                    
+                                </Card.Text>                                                             
+                            </Card.Body>
+                            <Card.Body className={`${!isDescriptionHidden ? "hide" : ""}`} >
+                            <Card.Text>
+                                    Numero de contacto : {shop.contactNumber}                                    
                                 </Card.Text>
-                                <Button className="form-button-custom">Contactar</Button>
+                                <Card.Text>
+                                    ¿Tiene domicilio? : {shop.domicilie}
+                                </Card.Text>    
                             </Card.Body>
                         </Card>
                     </Col>
@@ -78,9 +109,7 @@ export const Profile = (props) => {
                     <Col className="div-profile-header">
                         <Card bg="light" className="profile-picture">
                                 <Card.Header className="header-custom">
-                                    <Row><Col><Card.Title>Cerrado</Card.Title></Col>
-                                    <Col><Card.Title>actual date</Card.Title></Col>
-                                    </Row>
+                                <   Card.Title>Horarios</Card.Title>                                
                                 </Card.Header>
                                  <Card.Body>
                                     <Card.Text>
