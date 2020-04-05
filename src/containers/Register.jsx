@@ -13,7 +13,7 @@ import {Button, Form} from 'react-bootstrap'
 
 const Register = (props) => {
 
-  const coreBaseUrl = 'http://localhost:9072/tutendero';
+  const coreBaseUrl = 'http://3.14.253.197:9072/tutendero';
 
   const [form, setValues] = 
       useState ({email: 'jorge.j400@gmail.com', });
