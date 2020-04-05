@@ -9,7 +9,7 @@ import { ControlLabel } from 'react-bootstrap';
 
 const Register = () => {
 
-  const coreBaseUrl = 'http://3.22.70.203:9072/tutendero';
+  const coreBaseUrl = 'http://localhost:9072/tutendero';
 
   const [form, setValues] = 
       useState ({email: 'jorge.j400@gmail.com', });
@@ -74,10 +74,10 @@ const Register = () => {
     try {
       console.log('Enviando ...') 
       const responseU = await Axios.post(`${coreBaseUrl}/user`, user);
-      const responseS = await Axios.post(`${coreBaseUrl}/shop`, shop);
+      //const responseS = await Axios.post(`${coreBaseUrl}/shop`, shop);
       
       console.log("Respuesta usuario" + responseU);
-      console.log(responseS);
+      //console.log(responseS);
 
       if(responseU.status === 200) {        	
         setActionState ({sending: false, error: 'OK' })
