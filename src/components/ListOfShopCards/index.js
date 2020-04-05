@@ -3,57 +3,57 @@ import { ShopCard } from '../ShopCard'
 
 const shops =  [
     {
-        id:1, 
-        photoUrl: '/img/shop_demo.JPG',
+        id:2, 
+        photoUrl: 'https://tutenderoshopfiles.s3.us-east-2.amazonaws.com/pf_shop_2.JPG',
         name:'Carniceria el Paisa', 
         description:'Todo tipo de carnes de calidad traidas directamente del llano colombiano', 
-        open:true
-    },
-    {
-        id:2,
-        photoUrl: '/img/shop_demo.JPG',
-        name:'Panaderia Jesi', 
-        description:'Pan Fresco todos los días', 
+        categories: ['carniceria'],
         open:true
     },
     {
         id:3,
-        photoUrl: '/img/shop_demo.JPG',
-        name:'Drogueria farmas', 
-        description:'Salud y medicamentos, Belleza, Cuidado personal', 
-        open:false
+        photoUrl: 'https://tutenderoshopfiles.s3.us-east-2.amazonaws.com/pf_shop_3.jpg',
+        name:'Panaderia Jesi', 
+        description:'Pan Fresco todos los días', 
+        categories: ['panaderia'],
+        open:true
     },
     {
         id:4,
-        photoUrl: '/img/shop_demo.JPG',
-        name:'Drogueria superfarma', 
+        photoUrl: 'https://tutenderoshopfiles.s3.us-east-2.amazonaws.com/pf_shop_4.jpg',
+        name:'Drogueria farmas', 
         description:'Salud y medicamentos, Belleza, Cuidado personal', 
+        categories: ['farmacia'],
+        open:false
+    },
+    {
+        id:1,
+        photoUrl: 'https://tutenderoshopfiles.s3.us-east-2.amazonaws.com/pf_shop_1.jpg',
+        name:'Fruver don Pache', 
+        description:'La frescura del campo a su hogar', 
+        categories: ['fruver'],
         open:false
     },
     {
         id:5,
-        photoUrl: '/img/shop_demo.JPG',
         name:'Drogueria superfarma', 
         description:'Salud y medicamentos, Belleza, Cuidado personal', 
         open:false
     },
     {
         id:6,
-        photoUrl: '/img/shop_demo.JPG',
         name:'Drogueria superfarma', 
         description:'Salud y medicamentos, Belleza, Cuidado personal', 
         open:false
     },
     {
         id:7,
-        photoUrl: '/img/shop_demo.JPG',
         name:'Drogueria superfarma', 
         description:'Salud y medicamentos, Belleza, Cuidado personal', 
         open:false
     },
     {
         id:8,
-        photoUrl: '/img/shop_demo.JPG',
         name:'Drogueria superfarma', 
         description:'Salud y medicamentos, Belleza, Cuidado personal', 
         open:false

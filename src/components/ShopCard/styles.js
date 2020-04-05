@@ -9,3 +9,7 @@ export const Span = styled.span`
         color: green;
     }
 `
+export const Image = styled.img`
+    height: 200px;
+    width:100%;
+`
