@@ -18,13 +18,13 @@ export const Profile = (props) => {
         lat: props.lat !== undefined && props.lat !== '' ? props.lat : 4.5994,
         lng: props.lat !== undefined && props.lat !== '' ? props.lat : 74.0771,
         schedule : {
-            monday: props.schedule != undefined && props.schedule.monday != undefined && props.schedule.monday !=''? props.schedule.monday: '8 a.m - 5 p.m.',
-            tuesday: props.schedule != undefined && props.schedule.tuesday != undefined && props.schedule.tuesday !=''? props.schedule.tuesday: '8 a.m - 5 p.m.',
-            wednesday: props.schedule != undefined && props.schedule.wednesday != undefined && props.schedule.wednesday !=''? props.schedule.wednesday: '8 a.m - 5 p.m.',
-            thursday: props.schedule != undefined && props.schedule.thursday != undefined && props.schedule.thursday !=''? props.schedule.thursday: '8 a.m - 5 p.m.',
-            friday: props.schedule != undefined && props.schedule.friday != undefined && props.schedule.friday !=''? props.schedule.friday: '8 a.m - 5 p.m.',
-            saturday: props.schedule != undefined && props.schedule.saturday != undefined && props.schedule.saturday !=''? props.schedule.saturday: '8 a.m - 5 p.m.',
-            sunday: props.schedule != undefined && props.schedule.sunday != undefined && props.schedule.sunday !=''? props.schedule.sunday: '8 a.m - 5 p.m.',
+            monday: props.schedule !== undefined && props.schedule.monday !== undefined && props.schedule.monday !==''? props.schedule.monday: '8 a.m - 5 p.m.',
+            tuesday: props.schedule !== undefined && props.schedule.tuesday !== undefined && props.schedule.tuesday !==''? props.schedule.tuesday: '8 a.m - 5 p.m.',
+            wednesday: props.schedule !== undefined && props.schedule.wednesday !== undefined && props.schedule.wednesday !==''? props.schedule.wednesday: '8 a.m - 5 p.m.',
+            thursday: props.schedule !== undefined && props.schedule.thursday !== undefined && props.schedule.thursday !==''? props.schedule.thursday: '8 a.m - 5 p.m.',
+            friday: props.schedule !== undefined && props.schedule.friday !== undefined && props.schedule.friday !==''? props.schedule.friday: '8 a.m - 5 p.m.',
+            saturday: props.schedule !== undefined && props.schedule.saturday !== undefined && props.schedule.saturday !==''? props.schedule.saturday: '8 a.m - 5 p.m.',
+            sunday: props.schedule !== undefined && props.schedule.sunday !== undefined && props.schedule.sunday !==''? props.schedule.sunday: '8 a.m - 5 p.m.',
         },
         contactNumber: props.contactNumber !== undefined && props.contactNumber !== '' ? props.contactNumber : "313 244 5618",
         domicilie: props.domicilie !== undefined && props.domicilie !== '' ? props.domicilie : "Si"
@@ -44,15 +44,10 @@ export const Profile = (props) => {
     ));
 
 
-   const handleNavClicDescription = event  => {
+   const changeTab = event  => {
     event.preventDefault();
-    setDescriptionFlag(false)        
-   }
-
-   const handleNavContact = event  => {
-    event.preventDefault();
-    setDescriptionFlag(true)        
-   }
+    setDescriptionFlag(!isDescriptionHidden)        
+   }   
 
     return (
         <section className="default-container">
@@ -68,10 +63,10 @@ export const Profile = (props) => {
                             <Card.Header>
                                 <Row><Nav variant="tabs" defaultActiveKey={`${isDescriptionHidden ? "#contact" : "#description"}`}>
                                     <Nav.Item>
-                                        <Nav.Link href="#description" onClick={handleNavClicDescription}>Descripción</Nav.Link>
+                                        <Nav.Link href="#description" onClick={changeTab}>Descripción</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link href="#contact" onClick={handleNavContact}>Datos de contacto</Nav.Link>
+                                        <Nav.Link href="#contact" onClick={changeTab}>Datos de contacto</Nav.Link>
                                     </Nav.Item>
                                 </Nav></Row>
                             </Card.Header>

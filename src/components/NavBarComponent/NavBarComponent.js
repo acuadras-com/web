@@ -57,13 +57,13 @@ class NavBarComponent extends Component{
           <div className={`collapse navbar-collapse ${show}`} id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link activeClass="active" className="nav-link js-scroll-trigger" to="download" spy={true} smooth="easeInOutQuart" duration={1000} >¿Eres un comercio?</Link>
+                <LinkRoute activeClass="active" className="nav-link js-scroll-trigger" to="registro" spy={true} smooth="easeInOutQuart" duration={1000} >¿Eres un comercio?</LinkRoute>
               </li>
               <li className="nav-item">
-                <Link activeClass="active" className="nav-link js-scroll-trigger" to="features" spy={true} smooth="easeInOutQuart" duration={1000} >Buscar comercio</Link>
+                <LinkRoute activeClass="active" className="nav-link js-scroll-trigger" to="principal" spy={true} smooth="easeInOutQuart" duration={1000} >Buscar comercio</LinkRoute>
               </li>
               <li className="nav-item">
-                <Link activeClass="active" className="nav-link js-scroll-trigger" to="contact" spy={true} smooth="easeInOutQuart" duration={1000} >Preguntas frecuentes</Link>
+                <LinkRoute activeClass="active" className="nav-link js-scroll-trigger" to="registro-usuario" spy={true} smooth="easeInOutQuart" duration={1000} >Registro Usuario</LinkRoute>
               </li>
             </ul>
           </div>

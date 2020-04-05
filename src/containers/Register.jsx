@@ -2,15 +2,18 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { saveUser } from '../actions';
 import Axios from 'axios';
-import {Link} from 'react-router-dom';
-
 import './App.css';
 import '../assets/styles/components/Register.scss'
-import { ControlLabel } from 'react-bootstrap';
+import { InputText } from '../components/basic/Input-Text/InputText'
+import Container from 'react-bootstrap/Container'
+import '../components/basic/Input-Text/InputText.scss'
+import { PasswordRegister } from '../components/basic/Password/PasswordRegister'
+import {Button, Form} from 'react-bootstrap'
 
-const Register = () => {
 
-  const coreBaseUrl = 'http://localhost:9072/tutendero';
+const Register = (props) => {
+
+  const coreBaseUrl = 'http://3.14.253.197:9072/tutendero';
 
   const [form, setValues] = 
       useState ({email: 'jorge.j400@gmail.com', });
@@ -18,6 +21,9 @@ const Register = () => {
       useState({sending: false, error: null});
   const [passError, setPassError] = 
       useState('');
+
+  const [validated, setValidated] = useState(false);
+
 
   const validatePassword = (targetValue, otherValue) => {
     
@@ -50,9 +56,16 @@ const Register = () => {
     }
   }
 
-  const handleSubmit = event  => {
+  const handleSubmit = event  => {    
     event.preventDefault();
-    saveUser();
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
+    }
+    setValidated(true);
+    if (form.checkValidity() === true) {
+      saveUser();
+    }    
   }
 
   const saveUser = async () => {
@@ -100,7 +113,7 @@ const Register = () => {
     </div>
   }
   return (
-      <section className="register">
+      <section>
         {actionState.error === 'OK'
           ?  <RegistroExitoso />
           : (
@@ -109,80 +122,35 @@ const Register = () => {
               ? <span className="spanServiceError">{actionState.error}</span>
               : <span>	&nbsp;</span>
             }
-          <section className="register__container">
+          <Container className="form-container">
           
           <h2>Regístrate</h2>
          
-          <form className="register__container--form" onSubmit={handleSubmit}>
-         
-            <input 
-              name="name"
-              className="input" 
-              type="text" 
-              placeholder="Nombre" 
-              onChange={handleInput}
-              required={true}
-            />
-            <input 
-              name="email"
-              className="input" 
-              type="email" 
-              placeholder="Correo" 
-              onChange={handleInput}
-              required={true}
-              value = {form.email}
-            />
-            <input 
-              name="phone"
-              className="input" 
-              type="text" 
-              placeholder="Número Contacto" 
-              onChange={handleInput}
-              required={true}
-            />
-            <input 
-              name="storeName"
-              className="input" 
-              type="text" 
-              placeholder="Nombre Comercio" 
-              onChange={handleInput}
-              required={true}
-            />
-            <input 
-              name="password"
-              className="input"
-              type="password" 
-              placeholder="Contraseña"
-              onChange={handleInput}
-              required={true}
-              onBlur={handlePassworOut}
-              />
-            <input 
-              name="confirmPassword"
-              className="input"
-              type="password" 
-              placeholder="Confirmar Contraseña"
-              onChange={handleInput}
-              required={true}
-              onBlur={handlePassworOut}
-              />
+          <Form noValidate onSubmit={handleSubmit} validated={validated}>
+          
+          <InputText required name="name" gettingValue={handleInput} text="Nombre" typeInput="text" />
+          <InputText required name="email" gettingValue={handleInput} text="Correo" typeInput="email" />
+          <InputText required name="phone" gettingValue={handleInput} text="Número de Contacto" typeInput="number"  />
+          <InputText required name="storeName" gettingValue={handleInput} text="Nombre de Comercio"  typeInput="text"/>       
+          
+          <PasswordRegister onBlur={handlePassworOut} name="password" nameConfirm="confirmPassword" gettingValue={handleInput} gettingValueConfirm={handleInput}/>
               <span className="spanInputError">{passError}</span>
 
                {passError !=''
-                 ?<button disabled className="button">Registrarme</button>
+                 ?<Button className="form-button-custom" variant="primary" size="lg" block disabled>Registrarme</Button>
                  :(<>
                    {!actionState.sending
-                  ? <button className="button">Registrarme</button>
-                  : <button className="button2">Registrarme</button>
+                  ? <Button type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
+                  : <Button disabled type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
                 } </>)
                }
               
-              <div className="a">           
+              <div className="a text-center">           
                 <a href="">Iniciar sesión</a>     
               </div>
-          </form>
+          </Form>
          
-        </section>
+        </Container>
          </>
         )
         }
@@ -191,7 +159,7 @@ const Register = () => {
   );
 }
 const mapDispatchToProps = {
-  saveUser, 
+  saveUser 
 }
 
 const mapStateToProps = state => {

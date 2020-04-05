@@ -3,10 +3,9 @@ import '../../components/basic/Input-Text/InputText.scss'
 import '../../assets/styles/components/customer/Register.scss'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
-import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
-import * as Icon from 'react-bootstrap-icons'
 import { InputText } from '../../components/basic/Input-Text/InputText'
+import { PasswordRegister } from '../../components/basic/Password/PasswordRegister'
 import FacebookLogin from 'react-facebook-login';
 
 
@@ -20,27 +19,27 @@ export const Register = () => {
 
     const [name, setName] = useState("");
 
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState("");    
 
-    const [contactNumber, setContactNumber] = useState("");
+    const [pass, setPass] = useState("");
 
-    const hideShowPasword = () => {
-        setValues({
-            ...form,
-            isPassWordHidden: !form.isPassWordHidden
-        })
-    }
+    const [passConfirm, setPassConfirm] = useState("");
+    
 
     const onChangeName = event => {
         setName(event.target.value)
     }
 
-    const onChangeEmail = event => {
-        setEmail(event.target.value)
+    const onChangePass = event => {
+        setPass(event.target.value)
     }
 
-    const onChangeContactNumber = event => {
-        setContactNumber(event.target.value)
+    const onChangePassConfirm = event => {
+        setPassConfirm(event.target.value)
+    }
+
+    const onChangeEmail = event => {
+        setEmail(event.target.value)
     }
 
     return (
@@ -62,33 +61,11 @@ export const Register = () => {
                     <div className="text-center">
                         <p>Registrate ingresando la siguiente información</p>
                     </div>
-                    <InputText text="Nombre Completo" gettingValue={onChangeName} />
+                    <InputText typeInput="text" text="Nombre Completo" gettingValue={onChangeName} />
 
-                    <InputText text="Correo Electrónico" gettingValue={onChangeEmail} />
+                    <InputText typeInput="email" text="Correo Electrónico" gettingValue={onChangeEmail} />
 
-                    <Form.Group controlId="formGroupPassword">
-                        <InputGroup size="sm">
-                            <Form.Control className="form-input" type={`${form.isPassWordHidden ? "password" : "text"}`} placeholder="Contraseña" />
-                            <InputGroup.Append className="input-group-addon " onClick={hideShowPasword}>
-                                {form.isPassWordHidden
-                                    ? <Icon.Eye className />
-                                    : <Icon.EyeSlash className />
-                                }
-                            </InputGroup.Append>
-                        </InputGroup>
-                    </Form.Group>
-
-                    <Form.Group controlId="formGroupPasswordConfirm">
-                        <InputGroup size="sm">
-                            <Form.Control className="form-input" type={`${form.isPassWordHidden ? "password" : "text"}`} placeholder="Contraseña" />
-                            <InputGroup.Append className="input-group-addon" onClick={hideShowPasword}>
-                                {form.isPassWordHidden
-                                    ? <Icon.Eye className />
-                                    : <Icon.EyeSlash className />
-                                }
-                            </InputGroup.Append>
-                        </InputGroup>
-                    </Form.Group>
+                    <PasswordRegister gettingValue={onChangePass} gettingValueConfirm={onChangePassConfirm}/>
                     <Button className="form-button-custom" variant="primary" size="lg" block>
                         Registrarme
                     </Button>
