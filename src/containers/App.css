@@ -137,4 +137,15 @@
   border: calc(.06887vw + .67769px) solid #4c69ba;
   padding: calc(.34435vw + 13.38843px) calc(.34435vw + 18.38843px);
 }
+
+.default-container{
+  box-shadow: 0 0 2px rgba(10, 10, 10, 0.5);
+  margin: 67px auto;
+  max-width: 900px;
+  padding: 0;
+}
+
+#root{
+  background-color:#b6ceb42b;
+}
  

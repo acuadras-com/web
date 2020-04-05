@@ -52,7 +52,6 @@ class NavBarComponent extends Component{
           <img src={logo} alt="logo"  height="50px"    width="200px" />
         </LinkRoute>
           <button onClick={this.toggleShow.bind(this)} className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
             <i className="fa fa-bars"></i>
           </button>
           <div className={`collapse navbar-collapse ${show}`} id="navbarResponsive">
