@@ -6,9 +6,9 @@ import {Link} from 'react-router-dom';
 
 const DEFAULT_IMAGE = 'https://tutenderoshopfiles.s3.us-east-2.amazonaws.com'
 
-export const ShopCard = ({id, photoUrl=DEFAULT_IMAGE, name='Nombre Comercio', description='Productos de Calidad', categories=[], open=true}) => {
+export const ShopCard = ({id, photoUrl, name='Nombre Comercio', description='Productos de Calidad', categories=[], open=true}) => {
     
-    const imgUrl = photoUrl
+    var imgUrl = photoUrl
     
     if(photoUrl === undefined)
     {

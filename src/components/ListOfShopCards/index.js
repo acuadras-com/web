@@ -38,25 +38,30 @@ const shops =  [
         id:5,
         name:'Drogueria superfarma', 
         description:'Salud y medicamentos, Belleza, Cuidado personal', 
-        open:false
+        open:false,
+        categories: ['farmacia']
     },
     {
         id:6,
-        name:'Drogueria superfarma', 
-        description:'Salud y medicamentos, Belleza, Cuidado personal', 
-        open:false
+        name:'Pan del Sur', 
+        description:'Pan fresco todos los días', 
+        open:false,
+        categories: ['panaderia']
+        
     },
     {
         id:7,
-        name:'Drogueria superfarma', 
-        description:'Salud y medicamentos, Belleza, Cuidado personal', 
-        open:false
+        name:'Super Fruver', 
+        description:'Fruta seleccionada de la mejor calidad', 
+        open:false,
+        categories: ['fruver']
     },
     {
         id:8,
         name:'Drogueria superfarma', 
         description:'Salud y medicamentos, Belleza, Cuidado personal', 
-        open:false
+        open:false,
+        categories: ['farmacia']
     }
 
 ]
