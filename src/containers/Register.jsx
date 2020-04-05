@@ -1,20 +1,23 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
-import {saveUser} from '../actions';
+import { saveUser } from '../actions';
+import Axios from 'axios';
 import {Link} from 'react-router-dom';
 
 import './App.css';
 import '../assets/styles/components/Register.scss'
+import { ControlLabel } from 'react-bootstrap';
 
 const Register = () => {
 
-  const [form, setValues] = useState ({email: 'jorge.j400@gmail.com', });
+  const coreBaseUrl = 'http://3.22.70.203:9072/tutendero';
 
-  const [actionState, setActionState, sonIguales] 
-    = useState({sending: false, error: null, sonIguales: true});
-  
-  const [passError, setPassError] 
-    = useState('');
+  const [form, setValues] = 
+      useState ({email: 'jorge.j400@gmail.com', });
+  const [actionState, setActionState] = 
+      useState({sending: false, error: null});
+  const [passError, setPassError] = 
+      useState('');
 
   const validatePassword = (targetValue, otherValue) => {
     
@@ -55,19 +58,38 @@ const Register = () => {
   const saveUser = async () => {
     setActionState ({sending: true, error: null,});
 
+    const shop = {
+      creationDate: "2020-04-03T02:57:18.231Z",
+      name: form.storeName,
+      phone: form.phone,
+    }
+    const user = {
+      type: "STORE_USER",
+      creationDate: "2020-04-03T03:25:42.265Z",
+      email: form.email,
+      password: form.password,
+      name: form.name,
+      role: "SHOP_PRINCIPAL"
+    }
+    
     try {
       console.log('Enviando ...') 
-      const response = await fetch(`https://rickandmortyapi.com/api/character/`);
-      const data = await response.json();
+      const responseU = await Axios.post(`${coreBaseUrl}/user`, user);
+      const responseS = await Axios.post(`${coreBaseUrl}/shop`, shop);
       
-      if(form.email === 'jorge.j400@gmail.com') {        	
-        setActionState ({sending: false, error: 'Correo ya Registrado, por favor intente nuevamente' })
-      } else {
+      console.log("Respuesta usuario" + responseU);
+      console.log(responseS);
+
+      if(responseU.status === 200) {        	
         setActionState ({sending: false, error: 'OK' })
+      } else {
+        setActionState ({sending: false, error: 'Error, por favor intente nuevamente' })
       }
       
     } catch (error) {
-      setActionState ({sending: false, error: error, });
+      
+      console.log("Error usuario " + error);
+      setActionState ({sending: false, error: "A ocurrido un error por favor intente mas tarde", });
     }
   };
 

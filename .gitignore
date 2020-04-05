@@ -63,3 +63,4 @@ typings/
 #NEXT 
 .next
 .env.build
+package-lock.json
