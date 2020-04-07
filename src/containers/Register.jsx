@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { saveUser } from '../actions';
-import Axios from 'axios';
 import './App.css';
 import '../assets/styles/components/Register.scss'
 import { InputText } from '../components/basic/Input-Text/InputText'
@@ -13,12 +12,9 @@ import {Button, Form} from 'react-bootstrap'
 
 const Register = (props) => {
 
-  const coreBaseUrl = 'http://3.21.21.68:9072/tutendero';
-
   const [form, setValues] = 
       useState ({email: 'jorge.j400@gmail.com', });
-  const [actionState, setActionState] = 
-      useState({sending: false, error: null});
+  
   const [passError, setPassError] = 
       useState('');
 
@@ -64,64 +60,26 @@ const Register = (props) => {
     }
     setValidated(true);
     if (form.checkValidity() === true) {
-      saveUser();
+      
+      const shop = {
+        name: form.storeName,
+        phone: form.phone
+      }
+
+      const user = {
+        email: form.email,
+        password: form.password,
+        name: form.name,
+        shop: shop        
+      }
+      saveUser(user);
+      props.history.push("/setting-profile-shop")
     }    
   }
-
-  const saveUser = async () => {
-    setActionState ({sending: true, error: null,});
-
-    const shop = {
-      creationDate: "2020-04-03T02:57:18.231Z",
-      name: form.storeName,
-      phone: form.phone,
-    }
-    const user = {
-      type: "STORE_USER",
-      creationDate: "2020-04-03T03:25:42.265Z",
-      email: form.email,
-      password: form.password,
-      name: form.name,
-      role: "SHOP_PRINCIPAL"
-    }
-    
-    try {
-      console.log('Enviando ...') 
-      const responseU = await Axios.post(`${coreBaseUrl}/user`, user);
-      //const responseS = await Axios.post(`${coreBaseUrl}/shop`, shop);
-      
-      console.log("Respuesta usuario" + responseU);
-      //console.log(responseS);
-
-      if(responseU.status === 200) {        	
-        setActionState ({sending: false, error: 'OK' })
-      } else {
-        setActionState ({sending: false, error: 'Error, por favor intente nuevamente' })
-      }
-      
-    } catch (error) {
-      
-      console.log("Error usuario " + error);
-      setActionState ({sending: false, error: "A ocurrido un error por favor intente mas tarde", });
-    }
-  };
-
-  const RegistroExitoso = () => {
-    return <div className="registroExitoso">
-      <h3>Felicitaciones! Ahora haces parte de TuTendero, proximamente nos comunicaremos para continuar con el proceso</h3>
-      <a href="">Iniciar sesión</a>
-    </div>
-  }
+  
   return (
       <section>
-        {actionState.error === 'OK'
-          ?  <RegistroExitoso />
-          : (
-          <>
-            {actionState.error 
-              ? <span className="spanServiceError">{actionState.error}</span>
-              : <span>	&nbsp;</span>
-            }
+        
           <Container className="form-container">
           
           <h2>Regístrate</h2>
@@ -137,12 +95,9 @@ const Register = (props) => {
               <span className="spanInputError">{passError}</span>
 
                {passError !=''
-                 ?<Button className="form-button-custom" variant="primary" size="lg" block disabled>Registrarme</Button>
+                 ?<Button className="form-button-custom" variant="primary" size="lg" block disabled>Siguiente</Button>
                  :(<>
-                   {!actionState.sending
-                  ? <Button type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
-                  : <Button disabled type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
-                } </>)
+                   <Button type="submit" className="form-button-custom" variant="primary" size="lg" block>Siguiente</Button> </>)
                }
               
               <div className="a text-center">           
@@ -150,10 +105,7 @@ const Register = (props) => {
               </div>
           </Form>
          
-        </Container>
-         </>
-        )
-        }
+        </Container>        
         
      </section>
   );

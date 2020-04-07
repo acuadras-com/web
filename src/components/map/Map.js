@@ -3,7 +3,7 @@ import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "reac
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
 
-Geocode.setApiKey("AIzaSyAXySHAW4QAodQhfgmK3Tntha6u2zJa5PU");
+Geocode.setApiKey("AIzaSyCBmO4ZeHHj619irEV08hOQvejZ9oCZZuM");
 Geocode.enableDebug();
 
 class Map extends Component{
@@ -205,7 +205,7 @@ class Map extends Component{
 				lng: lngValue
 			},
 		})
-	};
+	};	
 
 	render(){
 		const AsyncMap = withScriptjs(
@@ -227,7 +227,8 @@ class Map extends Component{
 								marginBottom: '50px'
 							}}
 							onPlaceSelected={ this.onPlaceSelected }
-							types={['(regions)']}							
+							types={['address']}
+							componentRestrictions={{country: "co"}}							
 						/>
 						{/* InfoWindow on top of marker */}
 						<InfoWindow
@@ -255,7 +256,7 @@ class Map extends Component{
 			map = <div>
 				<h5>Ingresa tu dirección y selecciona tu ubicación en el mapa</h5>				
 				<AsyncMap
-					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0&libraries=places"
+					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBmO4ZeHHj619irEV08hOQvejZ9oCZZuM&libraries=places"
 					loadingElement={
 						<div style={{ height: `100%` }} />
 					}
