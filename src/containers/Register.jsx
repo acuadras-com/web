@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
-import { saveUser } from '../actions';
+import { saveUserToState } from '../actions';
 import './App.css';
 import '../assets/styles/components/Register.scss'
 import { InputText } from '../components/basic/Input-Text/InputText'
@@ -12,13 +12,14 @@ import {Button, Form} from 'react-bootstrap'
 
 const Register = (props) => {
 
-  const [form, setValues] = 
-      useState ({email: 'jorge.j400@gmail.com', });
+  const [formValues, setFormValues] = 
+      useState ({email: '', });
   
   const [passError, setPassError] = 
       useState('');
 
   const [validated, setValidated] = useState(false);
+
 
 
   const validatePassword = (targetValue, otherValue) => {
@@ -38,17 +39,17 @@ const Register = (props) => {
   }
   const handleInput = event => {
     
-    setValues({
-      ...form,
+    setFormValues({
+      ...formValues,
     [event.target.name]: event.target.value
     })
     
     if(event.target.name === 'confirmPassword') {
       
-      validatePassword(event.target.value, form.password)
+      validatePassword(event.target.value, formValues.password)
     }
     if(event.target.name === 'password') {
-      validatePassword(event.target.value, form.confirmPassword)
+      validatePassword(event.target.value, formValues.confirmPassword)
     }
   }
 
@@ -61,18 +62,18 @@ const Register = (props) => {
     setValidated(true);
     if (form.checkValidity() === true) {
       
-      const shop = {
-        name: form.storeName,
-        phone: form.phone
+      var shop = {
+        name: formValues.storeName,
+        phone: formValues.phone
       }
 
-      const user = {
-        email: form.email,
-        password: form.password,
-        name: form.name,
-        shop: shop        
+      var user = {
+        email: formValues.email,
+        password: formValues.password,
+        name: formValues.name
       }
-      saveUser(user);
+      
+      props.saveUserToState({user, shop})
       props.history.push("/setting-profile-shop")
     }    
   }
@@ -111,7 +112,7 @@ const Register = (props) => {
   );
 }
 const mapDispatchToProps = {
-  saveUser 
+  saveUserToState 
 }
 
 const mapStateToProps = state => {

@@ -6,7 +6,7 @@ import Axios from 'axios';
 import '../../assets/styles/components/shop/SettingProfileShop.scss'
 
 
-const SettingProfile = (props,user) => {
+const SettingProfile = (props) => {
 
 	
 
@@ -74,13 +74,14 @@ const SettingProfile = (props,user) => {
 
 	const RegistroExitoso = () => {
 		return <div className="registroExitoso">
-		  <h3>Felicitaciones! Ahora haces parte de TuTendero, proximamente nos comunicaremos para continuar con el proceso</h3>
+		  <h3>Felicitaciones! Ahora haces parte de TuTendero, proximamente nos comunicaremos para continuar con el proceso. </h3>
 		  <a href="">Iniciar sesión</a>
 		</div>
 	  }
-
+	  console.log(props.user)
 	return (
 		<section className="default-container">
+			<div>nombre usuario: ${props.user.name}</div>
 			{actionState.error === 'OK'
           		?  <RegistroExitoso />
           		: (
@@ -119,4 +120,4 @@ const SettingProfile = (props,user) => {
 	}
   }
   
-  export default connect(mapStateToProps)(SettingProfile);
+  export default connect(mapStateToProps, null)(SettingProfile);
