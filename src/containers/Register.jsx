@@ -22,7 +22,7 @@ const Register = (props) => {
 
   const [formValues, setFormValues] =
     useState({
-      email: props.user !== undefined ? props.user.email : "",
+      username: props.user !== undefined ? props.user.username : "",
       name: props.user !== undefined ? props.user.name : "",
       phone: props.shop !== undefined ? props.shop.phone : "",
       storeName: props.shop !== undefined ? props.shop.storeName : "",
@@ -95,10 +95,10 @@ const Register = (props) => {
     return {
       type: "STORE_USER",
       creationDate: today,
-      email: formValues.email,
+      username: formValues.username,
       password: formValues.password,
       name: formValues.name,
-      role: "SHOP_PRINCIPAL"
+      roles: ["SHOP_PRINCIPAL"]
     }
   }
 
@@ -134,7 +134,7 @@ const Register = (props) => {
     return <div className="registroExitoso">
       <h3>Felicitaciones! Ahora haces parte de TuTendero, proximamente nos comunicaremos para continuar con el proceso. </h3>
       <Link to="/setting-profile-shop">
-        <a>Continuar editando el perfil</a>
+      <a>Continuar editando el perfil</a>
       </Link>
     </div>
   }
@@ -166,7 +166,7 @@ const Register = (props) => {
               <Form noValidate onSubmit={handleSubmit} validated={validated}>
 
                 <InputText value={formValues.name} required name="name" gettingValue={handleInput} text="Nombre" typeInput="text" />
-                <InputText value={formValues.email} required name="email" gettingValue={handleInput} text="Correo" typeInput="email" />
+                <InputText value={formValues.username} required name="username" gettingValue={handleInput} text="Correo" typeInput="email" />
                 <InputText value={formValues.phone} required name="phone" gettingValue={handleInput} text="Número de Contacto" typeInput="number" />
                 <InputText value={formValues.storeName} required name="storeName" gettingValue={handleInput} text="Nombre de Comercio" typeInput="text" />
                 <Form.Group className="input-group-custom" >
