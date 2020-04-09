@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Map from '../../components/map/Map';
 import '../../assets/styles/components/shop/SettingProfileShop.scss'
-import { saveUserToState } from '../../actions';
+import { saveUserToState } from '../../actions/shopUserAction';
 
 
 
@@ -22,6 +22,7 @@ const SettingProfile = (props) => {
 			latitude: ubication.latitude,
 			longitude: ubication.longitude
 		})
+		
 		props.saveUserToState({
 			user:props.user,
 			shop:props.shop,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
-import { saveUserToState } from '../actions';
+import { saveUserToState, registerUser } from '../actions/shopUserAction';
 import './App.css';
 import '../assets/styles/components/Register.scss'
 import { InputText } from '../components/basic/Input-Text/InputText'
@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container'
 import '../components/basic/Input-Text/InputText.scss'
 import { PasswordRegister } from '../components/basic/Password/PasswordRegister'
 import { Button, Form, Feedback } from 'react-bootstrap'
+import {Link} from 'react-router-dom';
 
 
 const Register = (props) => {
@@ -18,9 +19,6 @@ const Register = (props) => {
     latitude: props.ubication !== undefined ? props.ubication.latitude : 4.60971,
     longitude: props.ubication !== undefined ? props.ubication.longitude : -74.08175
   });
-
-  const [actionState, setActionState] =
-    useState({ sending: false, error: null });
 
   const [formValues, setFormValues] =
     useState({
@@ -46,8 +44,6 @@ const Register = (props) => {
       })
     })
   }
-
-
 
   const validatePassword = (targetValue, otherValue) => {
 
@@ -95,7 +91,7 @@ const Register = (props) => {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
-    today = mm + '/' + dd + '/' + yyyy;
+    today = yyyy + '-' + mm + '-'  + dd;
     return {
       type: "STORE_USER",
       creationDate: today,
@@ -115,14 +111,13 @@ const Register = (props) => {
   }
 
   const handleSubmit = event => {
-
+    event.preventDefault();
     const form = event.currentTarget;
     if (formValues.terms === false) {
       setPassError('Debes aceptar términos y condiciones')
     }
 
     if (form.checkValidity() === false || formValues.terms === false) {
-      event.preventDefault();
       event.stopPropagation();
     }
     setValidated(true);
@@ -131,15 +126,16 @@ const Register = (props) => {
       let shop = buildShop()
       let user = buildUser();
 
-      //props.saveUserToState({ user, shop })
-      //service call
+      props.registerUser({ user, shop })
     }
   }
 
   const RegistroExitoso = () => {
     return <div className="registroExitoso">
       <h3>Felicitaciones! Ahora haces parte de TuTendero, proximamente nos comunicaremos para continuar con el proceso. </h3>
-      <a href="">Iniciar sesión</a>
+      <Link to="/setting-profile-shop">
+        <a>Continuar editando el perfil</a>
+      </Link>
     </div>
   }
 
@@ -158,14 +154,11 @@ const Register = (props) => {
 
   return (
     <section>
-      {actionState.error === 'OK'
+      {props.error === 'OK'
         ? <RegistroExitoso />
         : (
           <>
-            {actionState.error
-              ? <span className="spanServiceError">{actionState.error}</span>
-              : <span>	&nbsp;</span>
-            }
+            
             <Container className="form-container">
 
               <h2>Regístrate</h2>
@@ -185,6 +178,10 @@ const Register = (props) => {
 
                 <PasswordRegister onBlur={handlePassworOut} name="password" nameConfirm="confirmPassword" gettingValue={handleInput} gettingValueConfirm={handleInput} />
                 <span className="spanInputError">{passError}</span>
+                {props.error
+                  ? <span className="spanServiceError">{props.error}</span>
+                  : <span>	&nbsp;</span>
+                }
                 <Form.Group controlId="formBasicCheckbox">
                   <Form.Check className="register-check" type="checkbox">
                     <Form.Check.Input type="checkbox" name="terms" onClick={handleInput} className="check-custom" />
@@ -195,7 +192,7 @@ const Register = (props) => {
                 {passError != ''
                   ? <Button className="form-button-custom" variant="primary" size="lg" block disabled>Siguiente</Button>
                   : (<>
-                    {!actionState.sending
+                    {!props.loading
                       ? <Button type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
                       : <Button disabled type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
                     } </>)
@@ -213,12 +210,15 @@ const Register = (props) => {
   );
 }
 const mapDispatchToProps = {
-  saveUserToState
+  saveUserToState,
+  registerUser
 }
 
 const mapStateToProps = state => {
   return {
     user: state.user,
+    error: state.error,
+    loading: state.loading,
     shop: state.shop,
     ubication: state.ubication
   }
