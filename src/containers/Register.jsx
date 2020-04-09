@@ -7,7 +7,7 @@ import { InputText } from '../components/basic/Input-Text/InputText'
 import Container from 'react-bootstrap/Container'
 import '../components/basic/Input-Text/InputText.scss'
 import { PasswordRegister } from '../components/basic/Password/PasswordRegister'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, Feedback } from 'react-bootstrap'
 
 
 const Register = (props) => {
@@ -27,7 +27,8 @@ const Register = (props) => {
       email: props.user !== undefined ? props.user.email : "",
       name: props.user !== undefined ? props.user.name : "",
       phone: props.shop !== undefined ? props.shop.phone : "",
-      storeName: props.shop !== undefined ? props.shop.storeName : ""
+      storeName: props.shop !== undefined ? props.shop.storeName : "",
+      terms: false
     });
 
   const [passError, setPassError] =
@@ -65,10 +66,19 @@ const Register = (props) => {
   }
   const handleInput = event => {
 
-    setFormValues({
-      ...formValues,
-      [event.target.name]: event.target.value
-    })
+    setPassError('')
+
+    if (event.target.name === 'terms') {
+      setFormValues({
+        ...formValues,
+        [event.target.name]: event.target.checked
+      })
+    } else {
+      setFormValues({
+        ...formValues,
+        [event.target.name]: event.target.value
+      })
+    }
 
     if (event.target.name === 'confirmPassword') {
 
@@ -105,20 +115,24 @@ const Register = (props) => {
   }
 
   const handleSubmit = event => {
-    event.preventDefault();
-    let user = buildUser();
 
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    if (formValues.terms === false) {
+      setPassError('Debes aceptar términos y condiciones')
+    }
+
+    if (form.checkValidity() === false || formValues.terms === false) {
+      event.preventDefault();
       event.stopPropagation();
     }
     setValidated(true);
-    if (form.checkValidity() === true) {
+    if (form.checkValidity() === true && formValues.terms === true) {
 
       let shop = buildShop()
+      let user = buildUser();
 
       //props.saveUserToState({ user, shop })
-      //props.history.push("/setting-profile-shop")
+      //service call
     }
   }
 
@@ -163,7 +177,7 @@ const Register = (props) => {
                 <InputText value={formValues.phone} required name="phone" gettingValue={handleInput} text="Número de Contacto" typeInput="number" />
                 <InputText value={formValues.storeName} required name="storeName" gettingValue={handleInput} text="Nombre de Comercio" typeInput="text" />
                 <Form.Group className="input-group-custom" >
-                  <Form.Control name="address" onClick={settingLocattion} className="form-input" type="text" required value={position.address} placeholder="Ingresa tu dirección" />
+                  <Form.Control name="address" onClick={settingLocattion} onFocus={settingLocattion} className="form-input" type="text" required value={position.address} placeholder="Ingresa tu dirección" />
                   <Form.Control.Feedback type="invalid">
                     Por favor ingresa una dirección valida.
                   </Form.Control.Feedback>
@@ -172,10 +186,10 @@ const Register = (props) => {
                 <PasswordRegister onBlur={handlePassworOut} name="password" nameConfirm="confirmPassword" gettingValue={handleInput} gettingValueConfirm={handleInput} />
                 <span className="spanInputError">{passError}</span>
                 <Form.Group controlId="formBasicCheckbox">
-                  <Form.Check required type="checkbox">
-                      <Form.Check.Input type="checkbox"/>
-                      <Form.Check.Label>Al registrarme, declaro que he leído y acepto los <a href="">Términos y Condiciones</a> de TuTendero.</Form.Check.Label>
-                  </Form.Check>                  
+                  <Form.Check className="register-check" type="checkbox">
+                    <Form.Check.Input type="checkbox" name="terms" onClick={handleInput} className="check-custom" />
+                    <Form.Check.Label>Al registrarme, declaro que he leído y acepto los <a href="/terminos" target='_blank'>Términos y Condiciones</a> de TuTendero.</Form.Check.Label>                    
+                  </Form.Check>
                 </Form.Group>
 
                 {passError != ''
@@ -188,14 +202,14 @@ const Register = (props) => {
                 }
 
                 <div className="a text-center">
-                  <a href="">Iniciar sesión</a>
+                  <a href="/login" >Iniciar sesión</a>
                 </div>
               </Form>
 
             </Container>
           </>
         )}
-    </section>        
+    </section>
   );
 }
 const mapDispatchToProps = {

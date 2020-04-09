@@ -270,7 +270,7 @@ class Map extends Component {
 		let map;
 		if (this.props.center.lat !== undefined) {
 			map = <div>
-				<h5>Ingresa tu dirección o selecciona tu ubicación en el mapa, una vez tu dirección ubicación este bien haz clic sobre OK</h5>
+				<h5>Ingresa tu dirección o selecciona tu ubicación en el mapa</h5>
 				<AsyncMap
 					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBmO4ZeHHj619irEV08hOQvejZ9oCZZuM&libraries=places"
 					loadingElement={

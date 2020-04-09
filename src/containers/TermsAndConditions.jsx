@@ -59,8 +59,8 @@ const TermsAndConditions = () => {
             <h4>8. CONDICIONES DE PAGO USUARIO CLIENTE - USUARIO - TERCERO COMERCIO: </h4>
             <p>Las tarifas aplicables y condiciones de pago entre el USUARIO SOLICITANTE -
             y USUARIO - COMERCIO serán pactadas por los mismos, sin intervención de TUTENDERO.
-            Parágrafo: La relación de pago es exclusivamente entre USUARIO CLIENTE - y USUARIO - COMERCIO
-                y TUTENDERO-PLATAFORMA, se límita a prestar el medio tecnologico en caso de que el pago no sea en efectivo.</p>
+            Parágrafo: La relación de pago es exclusivamente entre USUARIO CLIENTE - y USUARIO - COMERCIO,
+                TUTENDERO-PLATAFORMA se límita a prestar el medio tecnologico en caso de que el pago no sea en efectivo.</p>
             <h4>9. RESPONSABILIDAD </h4>
             <p>TUTENDERO- PLATAFORMA TECNOLÓGICA permite contactar a un USUARIO - SOLICITANTE, que necesita un servicio o suministro con un USUARIO-COMERCIO,  habilitado legalmente para ejecutar servicio o suministro, por lo que se aclara que TUTENDERO, no es una empresa de suministros o servicios expuestos en La plataforma, ni asume roles de representante, agente comercial, comisionista o cualquier otro de usuarios. En TUTENDERO- PLATAFORMA, existirán dos clases de USUARIOS, el USUARIO CLIENTE que necesita encontrar un suministro o servicio y USUARIO - COMERCIO quienes son establecimientos de comercio.
             TUTENDERO- NO es responsable de eventos ajenos o externos a los relacionados con TUTENDERO- PLATAFORMA y su propósito.
@@ -130,7 +130,7 @@ const TermsAndConditions = () => {
             <p>7. Cumplir con los suministros o servicios ofertados mediante la Plataforma y solicitados por un USUARIO-CLIENTE.</p>
             <h4> 14. OBLIGACIONES DE LOS USUARIOS - CLIENTES</h4>
             <p>Los USUARIOS CLIENTES son aquellos que utilizan la plataforma para requerir contactarse con
-                un USUARIO- COMERCIO para lel pedido de un suministro o servicio.</p>
+                un USUARIO- COMERCIO para el pedido de un suministro o servicio.</p>
             <p>El USUARIO CLIENTE acepta las siguientes obligaciones: </p>
             <p>1. Hacer uso legal de las prestaciones brindadas por la Plataforma.</p>
             <p>2. Proporcionar datos e información reales a la Plataforma.</p>
@@ -174,7 +174,7 @@ const TermsAndConditions = () => {
             <p>TUTENDERO-PLATAFORMA autoriza al USUARIO a utilizar, visualizar, imprimir, descargar
             y almacenar los contenidos y/o los elementos insertados en la Plataforma Web
             exclusivamente para su uso personal, privado y no lucrativo, absteniéndose de
-                  realizar sobre los mismos cualquier acto de desopilación, ingeniería inversa, modificación, divulgación o suministro.</p>
+                  realizar sobre los mismos cualquier acto de descompilación, ingeniería inversa, modificación, divulgación o suministro.</p>
             <p>Cualquier otro uso o explotación de cualesquiera contenidos y/u otros elementos
             insertados en la Plataforma Web distinto de los aquí expresamente previstos estará
                   sujeto a la autorización previa de TUTENDERO-PLATAFORMA</p>
