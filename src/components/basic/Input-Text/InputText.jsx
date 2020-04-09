@@ -8,7 +8,7 @@ export const InputText = (props) => {
         text: props.text
     });
 
-    const [value, setValue] = useState("");
+    const [value, setValue] = useState(props.value!==undefined?props.value:"");
 
     const changeField = () => {
         setValues({
@@ -24,9 +24,9 @@ export const InputText = (props) => {
     
 
     return (
-        <Form.Group className="input-group-custom" controlId="formGroupName">
-            <Form.Control name={props.name} className={`floating-label form-input ${props.inputStyles}`} type={props.typeInput} required onFocus={changeField} onBlur={changeField} value={form.value} onChange={handleInput}/>
-            <Form.Label className={`field-inactive ${form.fieldActive || value != '' ? "field-active" : ""} ${props.labelStyles}`}>{form.text}</Form.Label>
+        <Form.Group className="input-group-custom" >
+            <Form.Control name={props.name} className={`floating-label form-input ${props.inputStyles}`} type={props.typeInput} required onFocus={changeField} onBlur={changeField} value={value} onChange={handleInput}/>
+            <Form.Label className={`field-inactive ${form.fieldActive || value !== '' ? "field-active" : ""} ${props.labelStyles}`}>{form.text}</Form.Label>
             <Form.Control.Feedback type="invalid">
                Por favor ingresa un {form.text} valido.
             </Form.Control.Feedback>

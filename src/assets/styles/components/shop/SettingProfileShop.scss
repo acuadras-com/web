@@ -2,3 +2,11 @@
      padding-top: 30px;
      padding-bottom: 30px;
 }
+.btn-primary:disabled {
+     cursor: none;
+     pointer-events: none;
+     background-color: gray;
+     border: 1px solid #999999;
+     background-color: #cccccc;
+     color: #666666;
+   }

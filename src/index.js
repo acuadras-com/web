@@ -7,7 +7,9 @@ import {createStore} from 'redux';
 import reducer from './reducers';
 
 const initialState = {
-    "user": {}
+    "user": {},
+    "shop": {},
+    "location": {}
 }
 
 const store = createStore(reducer, initialState);

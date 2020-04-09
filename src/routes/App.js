@@ -2,6 +2,8 @@ import React from 'react'
 import {BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from '../containers/Home'
 import Register from '../containers/Register'
+import TermsAndConditions from '../containers/TermsAndConditions'
+import Login from '../containers/Login'
 import {Register as CustomerRegister}  from '../containers/customer/Register'
 import NotFound from '../containers/NotFound'
 import Layout from '../components/LayoutComponent/Layout'
@@ -20,6 +22,8 @@ const App = () => (
                 <Route exact path="/perfil-comercio" component={Profile} />
                 <Route exact path="/setting-profile-shop" component={SettingProfile} />
                 <Route exact path="/principal" component={CustomerMain} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/terminos" component={TermsAndConditions} />                 
                 <Route component={NotFound} />
             </Switch>
         </Layout>

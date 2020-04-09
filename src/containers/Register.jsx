@@ -1,170 +1,226 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
-import { saveUser } from '../actions';
-import Axios from 'axios';
+import { saveUserToState } from '../actions';
 import './App.css';
 import '../assets/styles/components/Register.scss'
 import { InputText } from '../components/basic/Input-Text/InputText'
 import Container from 'react-bootstrap/Container'
 import '../components/basic/Input-Text/InputText.scss'
 import { PasswordRegister } from '../components/basic/Password/PasswordRegister'
-import {Button, Form} from 'react-bootstrap'
+import { Button, Form, Feedback } from 'react-bootstrap'
 
 
 const Register = (props) => {
 
-  const coreBaseUrl = 'http://3.21.21.68:9072/tutendero';
+  const [position, setPosition] = useState({
+    address: props.ubication !== undefined ? props.ubication.address : "",
+    neighborhood: props.ubication !== undefined ? props.ubication.neighborhood : "",
+    latitude: props.ubication !== undefined ? props.ubication.latitude : 4.60971,
+    longitude: props.ubication !== undefined ? props.ubication.longitude : -74.08175
+  });
 
-  const [form, setValues] = 
-      useState ({email: 'jorge.j400@gmail.com', });
-  const [actionState, setActionState] = 
-      useState({sending: false, error: null});
-  const [passError, setPassError] = 
-      useState('');
+  const [actionState, setActionState] =
+    useState({ sending: false, error: null });
+
+  const [formValues, setFormValues] =
+    useState({
+      email: props.user !== undefined ? props.user.email : "",
+      name: props.user !== undefined ? props.user.name : "",
+      phone: props.shop !== undefined ? props.shop.phone : "",
+      storeName: props.shop !== undefined ? props.shop.storeName : "",
+      terms: false
+    });
+
+  const [passError, setPassError] =
+    useState('');
 
   const [validated, setValidated] = useState(false);
 
+  if (props.ubication == undefined) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+      setPosition({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      })
+    })
+  }
+
+
 
   const validatePassword = (targetValue, otherValue) => {
-    
-    if(otherValue){
+
+    if (otherValue) {
       targetValue != otherValue
-        ?setPassError('las Contraseñas debe coincidir')
-        :setPassError('');
+        ? setPassError('las Contraseñas debe coincidir')
+        : setPassError('');
     }
-    
+
   }
   const handlePassworOut = event => {
     (event.target.value.length < 8)
-        ?setPassError('Password debe ser Mínimo de 8 Caracteres')
-        :setPassError('');
+      ? setPassError('Password debe ser Mínimo de 8 Caracteres')
+      : setPassError('');
 
   }
   const handleInput = event => {
-    
-    setValues({
-      ...form,
-    [event.target.name]: event.target.value
-    })
-    
-    if(event.target.name === 'confirmPassword') {
-      
-      validatePassword(event.target.value, form.password)
+
+    setPassError('')
+
+    if (event.target.name === 'terms') {
+      setFormValues({
+        ...formValues,
+        [event.target.name]: event.target.checked
+      })
+    } else {
+      setFormValues({
+        ...formValues,
+        [event.target.name]: event.target.value
+      })
     }
-    if(event.target.name === 'password') {
-      validatePassword(event.target.value, form.confirmPassword)
+
+    if (event.target.name === 'confirmPassword') {
+
+      validatePassword(event.target.value, formValues.password)
+    }
+    if (event.target.name === 'password') {
+      validatePassword(event.target.value, formValues.confirmPassword)
     }
   }
 
-  const handleSubmit = event  => {    
-    event.preventDefault();
+  const buildUser = () => {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+    return {
+      type: "STORE_USER",
+      creationDate: today,
+      email: formValues.email,
+      password: formValues.password,
+      name: formValues.name,
+      role: "SHOP_PRINCIPAL"
+    }
+  }
+
+  const buildShop = () => {
+    return {
+      name: formValues.storeName,
+      storeName: formValues.storeName,
+      phone: formValues.phone
+    }
+  }
+
+  const handleSubmit = event => {
+
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    if (formValues.terms === false) {
+      setPassError('Debes aceptar términos y condiciones')
+    }
+
+    if (form.checkValidity() === false || formValues.terms === false) {
+      event.preventDefault();
       event.stopPropagation();
     }
     setValidated(true);
-    if (form.checkValidity() === true) {
-      saveUser();
-    }    
+    if (form.checkValidity() === true && formValues.terms === true) {
+
+      let shop = buildShop()
+      let user = buildUser();
+
+      //props.saveUserToState({ user, shop })
+      //service call
+    }
   }
-
-  const saveUser = async () => {
-    setActionState ({sending: true, error: null,});
-
-    const shop = {
-      creationDate: "2020-04-03T02:57:18.231Z",
-      name: form.storeName,
-      phone: form.phone,
-    }
-    const user = {
-      type: "STORE_USER",
-      creationDate: "2020-04-03T03:25:42.265Z",
-      email: form.email,
-      password: form.password,
-      name: form.name,
-      role: "SHOP_PRINCIPAL"
-    }
-    
-    try {
-      console.log('Enviando ...') 
-      const responseU = await Axios.post(`${coreBaseUrl}/user`, user);
-      //const responseS = await Axios.post(`${coreBaseUrl}/shop`, shop);
-      
-      console.log("Respuesta usuario" + responseU);
-      //console.log(responseS);
-
-      if(responseU.status === 200) {        	
-        setActionState ({sending: false, error: 'OK' })
-      } else {
-        setActionState ({sending: false, error: 'Error, por favor intente nuevamente' })
-      }
-      
-    } catch (error) {
-      
-      console.log("Error usuario " + error);
-      setActionState ({sending: false, error: "A ocurrido un error por favor intente mas tarde", });
-    }
-  };
 
   const RegistroExitoso = () => {
     return <div className="registroExitoso">
-      <h3>Felicitaciones! Ahora haces parte de TuTendero, proximamente nos comunicaremos para continuar con el proceso</h3>
+      <h3>Felicitaciones! Ahora haces parte de TuTendero, proximamente nos comunicaremos para continuar con el proceso. </h3>
       <a href="">Iniciar sesión</a>
     </div>
   }
+
+
+  const settingLocattion = event => {
+    event.preventDefault();
+
+    let user = buildUser()
+    let shop = buildShop()
+    props.saveUserToState({ user, shop })
+    props.history.push({
+      pathname: "/setting-profile-shop",
+      search: `?lat=${position.latitude}&lng=${position.longitude}`
+    })
+  }
+
   return (
-      <section>
-        {actionState.error === 'OK'
-          ?  <RegistroExitoso />
-          : (
+    <section>
+      {actionState.error === 'OK'
+        ? <RegistroExitoso />
+        : (
           <>
-            {actionState.error 
+            {actionState.error
               ? <span className="spanServiceError">{actionState.error}</span>
               : <span>	&nbsp;</span>
             }
-          <Container className="form-container">
-          
-          <h2>Regístrate</h2>
-         
-          <Form noValidate onSubmit={handleSubmit} validated={validated}>
-          
-          <InputText required name="name" gettingValue={handleInput} text="Nombre" typeInput="text" />
-          <InputText required name="email" gettingValue={handleInput} text="Correo" typeInput="email" />
-          <InputText required name="phone" gettingValue={handleInput} text="Número de Contacto" typeInput="number"  />
-          <InputText required name="storeName" gettingValue={handleInput} text="Nombre de Comercio"  typeInput="text"/>       
-          
-          <PasswordRegister onBlur={handlePassworOut} name="password" nameConfirm="confirmPassword" gettingValue={handleInput} gettingValueConfirm={handleInput}/>
-              <span className="spanInputError">{passError}</span>
+            <Container className="form-container">
 
-               {passError !=''
-                 ?<Button className="form-button-custom" variant="primary" size="lg" block disabled>Registrarme</Button>
-                 :(<>
-                   {!actionState.sending
-                  ? <Button type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
-                  : <Button disabled type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
-                } </>)
-               }
-              
-              <div className="a text-center">           
-                <a href="">Iniciar sesión</a>     
-              </div>
-          </Form>
-         
-        </Container>
-         </>
-        )
-        }
-        
-     </section>
+              <h2>Regístrate</h2>
+
+              <Form noValidate onSubmit={handleSubmit} validated={validated}>
+
+                <InputText value={formValues.name} required name="name" gettingValue={handleInput} text="Nombre" typeInput="text" />
+                <InputText value={formValues.email} required name="email" gettingValue={handleInput} text="Correo" typeInput="email" />
+                <InputText value={formValues.phone} required name="phone" gettingValue={handleInput} text="Número de Contacto" typeInput="number" />
+                <InputText value={formValues.storeName} required name="storeName" gettingValue={handleInput} text="Nombre de Comercio" typeInput="text" />
+                <Form.Group className="input-group-custom" >
+                  <Form.Control name="address" onClick={settingLocattion} onFocus={settingLocattion} className="form-input" type="text" required value={position.address} placeholder="Ingresa tu dirección" />
+                  <Form.Control.Feedback type="invalid">
+                    Por favor ingresa una dirección valida.
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <PasswordRegister onBlur={handlePassworOut} name="password" nameConfirm="confirmPassword" gettingValue={handleInput} gettingValueConfirm={handleInput} />
+                <span className="spanInputError">{passError}</span>
+                <Form.Group controlId="formBasicCheckbox">
+                  <Form.Check className="register-check" type="checkbox">
+                    <Form.Check.Input type="checkbox" name="terms" onClick={handleInput} className="check-custom" />
+                    <Form.Check.Label>Al registrarme, declaro que he leído y acepto los <a href="/terminos" target='_blank'>Términos y Condiciones</a> de TuTendero.</Form.Check.Label>                    
+                  </Form.Check>
+                </Form.Group>
+
+                {passError != ''
+                  ? <Button className="form-button-custom" variant="primary" size="lg" block disabled>Siguiente</Button>
+                  : (<>
+                    {!actionState.sending
+                      ? <Button type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
+                      : <Button disabled type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
+                    } </>)
+                }
+
+                <div className="a text-center">
+                  <a href="/login" >Iniciar sesión</a>
+                </div>
+              </Form>
+
+            </Container>
+          </>
+        )}
+    </section>
   );
 }
 const mapDispatchToProps = {
-  saveUser 
+  saveUserToState
 }
 
 const mapStateToProps = state => {
-  return  {
-    user: state.user
+  return {
+    user: state.user,
+    shop: state.shop,
+    ubication: state.ubication
   }
 }
 
