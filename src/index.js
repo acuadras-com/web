@@ -8,7 +8,8 @@ import reducer from './reducers';
 
 const initialState = {
     "user": {},
-    "shop": {}
+    "shop": {},
+    "location": {}
 }
 
 const store = createStore(reducer, initialState);

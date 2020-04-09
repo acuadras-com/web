@@ -6,6 +6,7 @@ const reducer = (state, action) => {
                 ...state,
                 user: action.payload.user,
                 shop: action.payload.shop,
+                ubication: action.payload.ubication
             }
         default: 
             return state

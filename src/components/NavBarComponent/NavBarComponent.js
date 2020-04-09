@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
-import { Link, Events, animateScroll as scroll, scrollSpy } from 'react-scroll'
+import { Events, animateScroll as scroll, scrollSpy } from 'react-scroll'
 import logo from '../../logo-nobg.png'
 import { Link as LinkRoute } from 'react-router-dom';
 
@@ -57,13 +57,13 @@ class NavBarComponent extends Component{
           <div className={`collapse navbar-collapse ${show}`} id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <LinkRoute activeClass="active" className="nav-link js-scroll-trigger" to="registro" spy={true} smooth="easeInOutQuart" duration={1000} >¿Eres un comercio?</LinkRoute>
+                <LinkRoute activeclass="active" className="nav-link js-scroll-trigger" to="registro" spy="true" smooth="easeInOutQuart" duration={1000} >¿Eres un comercio?</LinkRoute>
               </li>
               <li className="nav-item">
-                <LinkRoute activeClass="active" className="nav-link js-scroll-trigger" to="principal" spy={true} smooth="easeInOutQuart" duration={1000} >Buscar comercio</LinkRoute>
+                <LinkRoute activeclass="active" className="nav-link js-scroll-trigger" to="principal" spy="true" smooth="easeInOutQuart" duration={1000} >Buscar comercio</LinkRoute>
               </li>
               <li className="nav-item">
-                <LinkRoute activeClass="active" className="nav-link js-scroll-trigger" to="registro-usuario" spy={true} smooth="easeInOutQuart" duration={1000} >Registro Usuario</LinkRoute>
+                <LinkRoute activeclass="active" className="nav-link js-scroll-trigger" to="registro-usuario" spy="true" smooth="easeInOutQuart" duration={1000} >Registro Usuario</LinkRoute>
               </li>
             </ul>
           </div>

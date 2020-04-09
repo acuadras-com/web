@@ -6,14 +6,13 @@ import Autocomplete from 'react-google-autocomplete';
 Geocode.setApiKey("AIzaSyCBmO4ZeHHj619irEV08hOQvejZ9oCZZuM");
 Geocode.enableDebug();
 
-class Map extends Component{
+class Map extends Component {
 
-	constructor( props ){
-		super( props );
+	constructor(props) {
+		super(props);
 		this.state = {
 			address: '',
 			city: '',
-			area: '',
 			state: '',
 			mapPosition: {
 				lat: this.props.center.lat,
@@ -29,25 +28,25 @@ class Map extends Component{
 	 * Get the current address from the default map position and set those values in the state
 	 */
 	componentDidMount() {
-		Geocode.fromLatLng( this.state.mapPosition.lat , this.state.mapPosition.lng ).then(
+		Geocode.fromLatLng(this.state.mapPosition.lat, this.state.mapPosition.lng).then(
 			response => {
 				const address = response.results[0].formatted_address,
-				      addressArray =  response.results[0].address_components,
-				      city = this.getCity( addressArray ),
-				      area = this.getArea( addressArray ),
-				      state = this.getState( addressArray );
+					addressArray = response.results[0].address_components,
+					city = this.getCity(addressArray),
+					area = this.getArea(addressArray),
+					state = this.getState(addressArray);
 
-				console.log( 'city', city, area, state );
+				console.log('city', city, area, state);
 
-				this.setState( {
-					address: ( address ) ? address : '',
-					area: ( area ) ? area : '',
-					city: ( city ) ? city : '',
-					state: ( state ) ? state : '',
-				} )
+				this.setState({
+					address: (address) ? address : '',
+					area: (area) ? area : '',
+					city: (city) ? city : '',
+					state: (state) ? state : '',
+				})
 			},
 			error => {
-				console.error( error );
+				console.error(error);
 			}
 		);
 	};
@@ -58,7 +57,7 @@ class Map extends Component{
 	 * @param nextState
 	 * @return {boolean}
 	 */
-	shouldComponentUpdate( nextProps, nextState ){
+	shouldComponentUpdate(nextProps, nextState) {
 		if (
 			this.state.markerPosition.lat !== this.props.center.lat ||
 			this.state.address !== nextState.address ||
@@ -67,7 +66,7 @@ class Map extends Component{
 			this.state.state !== nextState.state
 		) {
 			return true
-		} else if ( this.props.center.lat === nextProps.center.lat ){
+		} else if (this.props.center.lat === nextProps.center.lat) {
 			return false
 		}
 	}
@@ -77,11 +76,11 @@ class Map extends Component{
 	 * @param addressArray
 	 * @return {string}
 	 */
-	getCity = ( addressArray ) => {
+	getCity = (addressArray) => {
 		let city = '';
-		for( let i = 0; i < addressArray.length; i++ ) {
-			if ( addressArray[ i ].types[0] && 'administrative_area_level_2' === addressArray[ i ].types[0] ) {
-				city = addressArray[ i ].long_name;
+		for (let i = 0; i < addressArray.length; i++) {
+			if (addressArray[i].types[0] && 'administrative_area_level_2' === addressArray[i].types[0]) {
+				city = addressArray[i].long_name;
 				return city;
 			}
 		}
@@ -92,13 +91,13 @@ class Map extends Component{
 	 * @param addressArray
 	 * @return {string}
 	 */
-	getArea = ( addressArray ) => {
+	getArea = (addressArray) => {
 		let area = '';
-		for( let i = 0; i < addressArray.length; i++ ) {
-			if ( addressArray[ i ].types[0]  ) {
-				for ( let j = 0; j < addressArray[ i ].types.length; j++ ) {
-					if ( 'sublocality_level_1' === addressArray[ i ].types[j] || 'locality' === addressArray[ i ].types[j] ) {
-						area = addressArray[ i ].long_name;
+		for (let i = 0; i < addressArray.length; i++) {
+			if (addressArray[i].types[0]) {
+				for (let j = 0; j < addressArray[i].types.length; j++) {
+					if ('sublocality_level_1' === addressArray[i].types[j] || 'locality' === addressArray[i].types[j]) {
+						area = addressArray[i].long_name;
 						return area;
 					}
 				}
@@ -111,12 +110,12 @@ class Map extends Component{
 	 * @param addressArray
 	 * @return {string}
 	 */
-	getState = ( addressArray ) => {
+	getState = (addressArray) => {
 		let state = '';
-		for( let i = 0; i < addressArray.length; i++ ) {
-			for( let i = 0; i < addressArray.length; i++ ) {
-				if ( addressArray[ i ].types[0] && 'administrative_area_level_1' === addressArray[ i ].types[0] ) {
-					state = addressArray[ i ].long_name;
+		for (let i = 0; i < addressArray.length; i++) {
+			for (let i = 0; i < addressArray.length; i++) {
+				if (addressArray[i].types[0] && 'administrative_area_level_1' === addressArray[i].types[0]) {
+					state = addressArray[i].long_name;
 					return state;
 				}
 			}
@@ -126,7 +125,7 @@ class Map extends Component{
 	 * And function for city,state and address input
 	 * @param event
 	 */
-	onChange = ( event ) => {
+	onChange = (event) => {
 		this.setState({ [event.target.name]: event.target.value });
 	};
 	/**
@@ -134,7 +133,7 @@ class Map extends Component{
 	 *
 	 * @param event
 	 */
-	onInfoWindowClose = ( event ) => {
+	onInfoWindowClose = (event) => {
 
 	};
 
@@ -145,22 +144,31 @@ class Map extends Component{
 	 *
 	 * @param event
 	 */
-	onMarkerDragEnd = ( event ) => {
+	onMarkerDragEnd = (event) => {
 		let newLat = event.latLng.lat(),
-		    newLng = event.latLng.lng();
+			newLng = event.latLng.lng();
 
-		Geocode.fromLatLng( newLat , newLng ).then(
+		Geocode.fromLatLng(newLat, newLng).then(
 			response => {
 				const address = response.results[0].formatted_address,
-				      addressArray =  response.results[0].address_components,
-				      city = this.getCity( addressArray ),
-				      area = this.getArea( addressArray ),
-				      state = this.getState( addressArray );
-				this.setState( {
-					address: ( address ) ? address : '',
-					area: ( area ) ? area : '',
-					city: ( city ) ? city : '',
-					state: ( state ) ? state : '',
+					addressArray = response.results[0].address_components,
+					city = this.getCity(addressArray),
+					area = this.getArea(addressArray),
+					state = this.getState(addressArray);
+
+				this.props.updateLocation(
+					{
+						address: (address) ? address : '',
+						neighborhood: (area) ? area : '',
+						latitude: newLat,
+						longitude: newLng
+					}
+				);
+				this.setState({
+					address: (address) ? address : '',
+					area: (area) ? area : '',
+					city: (city) ? city : '',
+					state: (state) ? state : '',
 					markerPosition: {
 						lat: newLat,
 						lng: newLng
@@ -169,7 +177,7 @@ class Map extends Component{
 						lat: newLat,
 						lng: newLng
 					},
-				} )
+				})
 			},
 			error => {
 				console.error(error);
@@ -181,21 +189,29 @@ class Map extends Component{
 	 * When the user types an address in the search box
 	 * @param place
 	 */
-	onPlaceSelected = ( place ) => {
-		console.log( 'plc', place );
+	onPlaceSelected = (place) => {
+		console.log('plc', place);
 		const address = place.formatted_address,
-		      addressArray =  place.address_components,
-		      city = this.getCity( addressArray ),
-		      area = this.getArea( addressArray ),
-		      state = this.getState( addressArray ),
-		      latValue = place.geometry.location.lat(),
-		      lngValue = place.geometry.location.lng();
+			addressArray = place.address_components,
+			city = this.getCity(addressArray),
+			area = this.getArea(addressArray),
+			state = this.getState(addressArray),
+			latValue = place.geometry.location.lat(),
+			lngValue = place.geometry.location.lng();
 		// Set these values in the state.
+		this.props.updateLocation(
+			{
+				address: (address) ? address : '',
+				neighborhood: (area) ? area : '',
+				latitude: latValue,
+				longitude: lngValue
+			}
+		);
 		this.setState({
-			address: ( address ) ? address : '',
-			area: ( area ) ? area : '',
-			city: ( city ) ? city : '',
-			state: ( state ) ? state : '',
+			address: (address) ? address : '',
+			area: (area) ? area : '',
+			city: (city) ? city : '',
+			state: (state) ? state : '',
 			markerPosition: {
 				lat: latValue,
 				lng: lngValue
@@ -205,16 +221,16 @@ class Map extends Component{
 				lng: lngValue
 			},
 		})
-	};	
+	};
 
-	render(){
+	render() {
 		const AsyncMap = withScriptjs(
 			withGoogleMap(
 				props => (
-					<GoogleMap google={ this.props.google }
-					           defaultZoom={ this.props.zoom }
-							   defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
-							   styles={[{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"color":"#000000"},{"lightness":13}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#144b53"},{"lightness":14},{"weight":1.4}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#08304b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#0c4152"},{"lightness":5}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#0b434f"},{"lightness":25}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#0b3d51"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"}]},{"featureType":"transit","elementType":"all","stylers":[{"color":"#146474"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#021019"}]}]}
+					<GoogleMap google={this.props.google}
+						defaultZoom={this.props.zoom}
+						defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
+						styles={[{ "featureType": "all", "elementType": "labels.text.fill", "stylers": [{ "color": "#ffffff" }] }, { "featureType": "all", "elementType": "labels.text.stroke", "stylers": [{ "color": "#000000" }, { "lightness": 13 }] }, { "featureType": "administrative", "elementType": "geometry.fill", "stylers": [{ "color": "#000000" }] }, { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": [{ "color": "#144b53" }, { "lightness": 14 }, { "weight": 1.4 }] }, { "featureType": "landscape", "elementType": "all", "stylers": [{ "color": "#08304b" }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "color": "#0c4152" }, { "lightness": 5 }] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#000000" }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#0b434f" }, { "lightness": 25 }] }, { "featureType": "road.arterial", "elementType": "geometry.fill", "stylers": [{ "color": "#000000" }] }, { "featureType": "road.arterial", "elementType": "geometry.stroke", "stylers": [{ "color": "#0b3d51" }, { "lightness": 16 }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#000000" }] }, { "featureType": "transit", "elementType": "all", "stylers": [{ "color": "#146474" }] }, { "featureType": "water", "elementType": "all", "stylers": [{ "color": "#021019" }] }]}
 
 					>
 						{/* For Auto complete Search Box */}
@@ -226,35 +242,35 @@ class Map extends Component{
 								marginTop: '10px',
 								marginBottom: '50px'
 							}}
-							onPlaceSelected={ this.onPlaceSelected }
+							onPlaceSelected={this.onPlaceSelected}
 							types={['address']}
-							componentRestrictions={{country: "co"}}							
+							componentRestrictions={{ country: "co" }}
 						/>
 						{/* InfoWindow on top of marker */}
 						<InfoWindow
 							onClose={this.onInfoWindowClose}
-							position={{ lat: ( this.state.markerPosition.lat + 0.0018 ), lng: this.state.markerPosition.lng }}
+							position={{ lat: (this.state.markerPosition.lat + 0.0018), lng: this.state.markerPosition.lng }}
 						>
 							<div>
-								<span style={{ padding: 0, margin: 0 }}>{ this.state.address }</span>
+								<span style={{ padding: 0, margin: 0 }}>{this.state.address}</span>
 							</div>
 						</InfoWindow>
 						{/*Marker*/}
 						<Marker google={this.props.google}
-						        name={'Dolores park'}
-						        draggable={true}
-						        onDragEnd={ this.onMarkerDragEnd }
-						        position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}
+							name={'Dolores park'}
+							draggable={true}
+							onDragEnd={this.onMarkerDragEnd}
+							position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}
 						/>
-						<Marker />						
+						<Marker />
 					</GoogleMap>
 				)
 			)
 		);
 		let map;
-		if( this.props.center.lat !== undefined ) {
+		if (this.props.center.lat !== undefined) {
 			map = <div>
-				<h5>Ingresa tu dirección y selecciona tu ubicación en el mapa</h5>				
+				<h5>Ingresa tu dirección o selecciona tu ubicación en el mapa, una vez tu dirección ubicación este bien haz clic sobre OK</h5>
 				<AsyncMap
 					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBmO4ZeHHj619irEV08hOQvejZ9oCZZuM&libraries=places"
 					loadingElement={
@@ -269,10 +285,10 @@ class Map extends Component{
 				/>
 			</div>
 		} else {
-			map = <div style={{height: this.props.height}} />
+			map = <div style={{ height: this.props.height }} />
 		}
-		return( map )
+		return (map)
 	}
-	
+
 }
 export default Map
