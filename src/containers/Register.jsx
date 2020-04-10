@@ -134,7 +134,7 @@ const Register = (props) => {
     return <div className="registroExitoso">
       <h3>Felicitaciones! Ahora haces parte de TuTendero, proximamente nos comunicaremos para continuar con el proceso. </h3>
       <Link to="/">
-      <a>Ir al inicio</a>
+        Ir al inicio
       </Link>
     </div>
   }
