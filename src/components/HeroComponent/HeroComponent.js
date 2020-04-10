@@ -11,8 +11,9 @@ export const HeroComponent = (props)=>{
         <div className="col-lg-7 my-auto">
           <div className="header-content mx-auto">
             <h1 className="mb-5">Permite que clientes cercanos te encuentren y te hagan pedidos</h1>
+            <h2 className="mb-5">Aplicación disponible desde el próximo 20 de abril. Totalmente gratis sólo para los primeros 100 tenderos </h2>
             <Link to="registro">
-              <div className="btn btn-outline btn-xl js-scroll-trigger">Uneté Ahora Totalmente gratis</div>
+              <div className="btn btn-outline btn-xl js-scroll-trigger">Uneté Ahora</div>
             </Link>
           </div>
         </div>
