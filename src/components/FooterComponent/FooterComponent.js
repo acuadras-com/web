@@ -10,7 +10,7 @@ export const FooterComponent = (props)=>{
           <a href="#">Privacidad</a>
         </li>
         <li className="list-inline-item">
-          <a href="#">Términos y condiciones</a>
+          <a href="/terminos">Términos y condiciones</a>
         </li>
         <li className="list-inline-item">
           <a href="#">Preguntas frecuentes</a>
