@@ -51,19 +51,19 @@ class NavBarComponent extends Component{
         <LinkRoute to="/">
           <img src={logo} alt="logo"  height="50px"    width="200px" />
         </LinkRoute>
+        <a target="_blank" href="https://api.whatsapp.com/send?phone=573014857108">
+            <img src="https://img.icons8.com/color/48/000000/whatsapp.png"/>
+          </a>
           <button onClick={this.toggleShow.bind(this)} className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <i className="fa fa-bars"></i>
           </button>
           <div className={`collapse navbar-collapse ${show}`} id="navbarResponsive">
-            <ul className="navbar-nav ml-auto">
+            <ul className="navbar-nav ml-auto">              
               <li className="nav-item">
-                <LinkRoute activeclass="active" className="nav-link js-scroll-trigger" to="registro" spy="true" smooth="easeInOutQuart" duration={1000} >¿Eres un comercio?</LinkRoute>
+                <a activeclass="active" className="nav-link js-scroll-trigger" href="#features" spy="true" smooth="easeInOutQuart" duration={1000} >¿Porqué elegirnos?</a>
               </li>
               <li className="nav-item">
-                <LinkRoute activeclass="active" className="nav-link js-scroll-trigger" to="principal" spy="true" smooth="easeInOutQuart" duration={1000} >Buscar comercio</LinkRoute>
-              </li>
-              <li className="nav-item">
-                <LinkRoute activeclass="active" className="nav-link js-scroll-trigger" to="registro-usuario" spy="true" smooth="easeInOutQuart" duration={1000} >Registro Usuario</LinkRoute>
+                <LinkRoute activeclass="active" className="nav-link js-scroll-trigger" to="registro" spy="true" smooth="easeInOutQuart" duration={1000} >Únete ahora</LinkRoute>
               </li>
             </ul>
           </div>
