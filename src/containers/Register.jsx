@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import smartlookClient from 'smartlook-client'
 import { connect } from 'react-redux';
+import ReactGA from 'react-ga';
 import { saveUserToState, registerUser } from '../actions/shopUserAction';
 import './App.css';
 import '../assets/styles/components/Register.scss'
@@ -12,6 +14,9 @@ import {Link} from 'react-router-dom';
 
 
 const Register = (props) => {
+
+  ReactGA.pageview("/registro");
+  
 
   const [position, setPosition] = useState({
     address: props.ubication !== undefined ? props.ubication.address : "",
@@ -125,7 +130,11 @@ const Register = (props) => {
 
       let shop = buildShop()
       let user = buildUser();
-
+      ReactGA.event({
+        category: 'Shop',
+        action: 'Usuario registrado'
+      });     
+      smartlookClient.pause();
       props.registerUser({ user, shop })
     }
   }

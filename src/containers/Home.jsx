@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import ReactGA from 'react-ga';
 import './App.css';
 import {CallToActionComponent} from '../components/CallToActionComponent/CallToActionComponent';
 import {FeaturesComponent} from '../components/FeaturesComponent/FeaturesComponent';
@@ -7,6 +7,7 @@ import {HeroComponent} from '../components/HeroComponent/HeroComponent';
 import {SocialComponent} from '../components/SocialComponent/SocialComponent';
 
 class Home extends Component {
+  
   constructor(props){
     super(props);
     this.state={navBarShrink:""};
@@ -14,7 +15,8 @@ class Home extends Component {
   }
 
   componentDidMount(){
-    window.addEventListener('scroll', this.handleScroll);
+    ReactGA.pageview("/landing-comercio");
+    window.addEventListener('scroll', this.handleScroll);    
     this.handleScroll();
   }
 
