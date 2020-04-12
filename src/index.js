@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactGA from 'react-ga';
 import App from './routes/App';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
@@ -14,6 +15,7 @@ const initialState = {
     "loading":false,
     "error": ''
 }
+ReactGA.initialize('UA-163455751-1');
 
 const store = createStore(
     reducer,

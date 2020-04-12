@@ -1,10 +1,19 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import ReactGA from 'react-ga';
 import './style.css';
 import '../../device-mockups/device-mockups.css'
 import demoScreen1 from '../../search-internet.png';
 
 export const HeroComponent = (props)=>{
+
+  const sendAnalytics= ()=>{
+    ReactGA.event({
+      category: 'Shop',
+      action: 'accion 1 desde landing'
+    });
+  }
+
   return <header className="masthead">
     <div className="container h-100">
       <div className="row h-100">
@@ -12,7 +21,7 @@ export const HeroComponent = (props)=>{
           <div className="header-content mx-auto">
             <h1 className="mb-5">Permite que clientes cercanos te encuentren y te hagan pedidos</h1>
             <h3 className="mb-5">Aplicación disponible desde el próximo 27 de abril. Totalmente gratis sólo para los primeros 100 tenderos por 6 meses </h3>
-            <Link to="registro">
+            <Link to="registro" onClick={sendAnalytics}>
               <div className="btn btn-outline btn-xl js-scroll-trigger">Uneté Ahora</div>
             </Link>
           </div>
