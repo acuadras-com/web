@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import {SAVE_USER, REGISTER_USER, LOADING, ERROR} from '../types/userTypes'
 
-const coreBaseUrl = 'http://18.222.20.44:9072/tutendero';
+const coreBaseUrl = 'http://localhost:9072/tutendero';
 const generalError = 'Error General, por favor comuniquese con el administrador o vuelva a intentarlo mas tarde';
 
 export const saveUserToState =(payload) => (

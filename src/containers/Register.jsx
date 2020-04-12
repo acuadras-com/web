@@ -163,23 +163,26 @@ const Register = (props) => {
 
               <h2>Regístrate</h2>
 
-              <Form noValidate onSubmit={handleSubmit} validated={validated}>
+              <Form disabled={props.loading} noValidate onSubmit={handleSubmit} validated={validated}>
 
-                <InputText value={formValues.name} required name="name" gettingValue={handleInput} text="Nombre" typeInput="text" />
-                <InputText value={formValues.username} required name="username" gettingValue={handleInput} text="Correo" typeInput="email" />
-                <InputText value={formValues.phone} required name="phone" gettingValue={handleInput} text="Número de Contacto" typeInput="number" />
-                <InputText value={formValues.storeName} required name="storeName" gettingValue={handleInput} text="Nombre de Comercio" typeInput="text" />
+                <InputText disabled={props.loading} value={formValues.username} required name="username" gettingValue={handleInput} text="Correo" typeInput="email" />
+                <InputText disabled={props.loading} value={formValues.phone} required name="phone" gettingValue={handleInput} text="Número de Contacto" typeInput="number" />
+                <InputText disabled={props.loading} value={formValues.storeName} required name="storeName" gettingValue={handleInput} text="Nombre de Comercio" typeInput="text" />
                 <Form.Group className="input-group-custom" >
-                  <Form.Control name="address" onClick={settingLocattion} onFocus={settingLocattion} className="form-input" type="text" required value={position.address} placeholder="Ingresa tu dirección" />
+                  <Form.Control disabled={props.loading} name="address" onClick={settingLocattion} onFocus={settingLocattion} className="form-input" type="text" required value={position.address} placeholder="Ingresa tu dirección" />
                   <Form.Control.Feedback type="invalid">
                     Por favor ingresa una dirección valida.
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <PasswordRegister onBlur={handlePassworOut} name="password" nameConfirm="confirmPassword" gettingValue={handleInput} gettingValueConfirm={handleInput} />
+                <PasswordRegister disabled={props.loading} onBlur={handlePassworOut} name="password" nameConfirm="confirmPassword" gettingValue={handleInput} gettingValueConfirm={handleInput} />
                 <span className="spanInputError">{passError}</span>
-                {props.error
+                {props.error && !props.loading
                   ? <span className="spanServiceError">{props.error}</span>
+                  : <span>	&nbsp;</span>
+                }
+                {props.loading
+                  ? <div className="loading" >&nbsp;</div>
                   : <span>	&nbsp;</span>
                 }
                 <Form.Group controlId="formBasicCheckbox">
@@ -190,12 +193,8 @@ const Register = (props) => {
                 </Form.Group>
 
                 {passError != ''
-                  ? <Button className="form-button-custom" variant="primary" size="lg" block disabled>Siguiente</Button>
-                  : (<>
-                    {!props.loading
-                      ? <Button type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
-                      : <Button disabled type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
-                    } </>)
+                  ? <Button className="form-button-custom" variant="primary" size="lg" block disabled>Registrarme</Button>
+                  : <Button disabled={props.loading} type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme </Button> 
                 }
 
                 <div className="a text-center">

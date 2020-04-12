@@ -7,13 +7,13 @@
   
   .spanServiceError {
     width: 200px;
-    color: darkorange;
+    color: #dc3545;
     text-align: center;
     padding-top: 70px;
   }
 
   .spanInputError {
-    color: darkorange;
+    color: #dc3545;
   }  
 
   .registroExitoso {
@@ -48,4 +48,11 @@
     top: 0px;
     width: 1.25rem;
     border-radius: 3px;
+  }
+
+  .loading {
+    background-image: url(./ZKZg.gif);
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    background-position: center;
   }

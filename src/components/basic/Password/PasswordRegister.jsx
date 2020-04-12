@@ -28,7 +28,7 @@ export const PasswordRegister = (props) => {
     return (<Fragment>
             <Form.Group controlId="formGroupPassword">
                 <InputGroup size="sm">
-                    <Form.Control required onBlur={props.onBlur} name={props.name} className="form-input" type={`${isPassWordHidden ? "password" : "text"}`} placeholder="Contraseña" onChange={handlePass}/>
+                    <Form.Control disabled={props.disabled} required onBlur={props.onBlur} name={props.name} className="form-input" type={`${isPassWordHidden ? "password" : "text"}`} placeholder="Contraseña" onChange={handlePass}/>
                         <InputGroup.Append className="input-group-addon " onClick={hideShowPasword}>
                             {isPassWordHidden
                                 ? <Icon.Eye/>
@@ -43,7 +43,7 @@ export const PasswordRegister = (props) => {
 
             <Form.Group controlId="formGroupPasswordConfirm">
                 <InputGroup size="sm">
-                    <Form.Control required onBlur={props.onBlur} name={props.nameConfirm} className="form-input" type={`${isPassWordHidden ? "password" : "text"}`} placeholder="Contraseña" onChange={handlePassConfirm} />
+                    <Form.Control disabled={props.disabled} required onBlur={props.onBlur} name={props.nameConfirm} className="form-input" type={`${isPassWordHidden ? "password" : "text"}`} placeholder="Contraseña" onChange={handlePassConfirm} />
                         <InputGroup.Append className="input-group-addon" onClick={hideShowPasword}>
                                 {isPassWordHidden
                                 ? <Icon.Eye  />
