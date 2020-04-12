@@ -9,7 +9,7 @@ export const CallToActionComponent = (props)=>{
     ReactGA.event({
       category: 'Shop',
       action: 'accion 2 desde landing'
-    });
+    });    
   }
 
   return <section className="cta">

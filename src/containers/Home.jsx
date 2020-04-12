@@ -16,7 +16,7 @@ class Home extends Component {
 
   componentDidMount(){
     ReactGA.pageview("/landing-comercio");
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);    
     this.handleScroll();
   }
 
