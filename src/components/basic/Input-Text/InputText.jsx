@@ -25,7 +25,7 @@ export const InputText = (props) => {
 
     return (
         <Form.Group className="input-group-custom" >
-            <Form.Control name={props.name} className={`floating-label form-input ${props.inputStyles}`} type={props.typeInput} required onFocus={changeField} onBlur={changeField} value={value} onChange={handleInput}/>
+            <Form.Control disabled={props.disabled} name={props.name} className={`floating-label form-input ${props.inputStyles}`} type={props.typeInput} required onFocus={changeField} onBlur={changeField} value={value} onChange={handleInput}/>
             <Form.Label className={`field-inactive ${form.fieldActive || value !== '' ? "field-active" : ""} ${props.labelStyles}`}>{form.text}</Form.Label>
             <Form.Control.Feedback type="invalid">
                Por favor ingresa un {form.text} valido.
