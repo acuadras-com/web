@@ -203,7 +203,15 @@ const Register = (props) => {
 
                 {passError != ''
                   ? <Button className="form-button-custom" variant="primary" size="lg" block disabled>Registrarme</Button>
+<<<<<<< HEAD
                   : <Button disabled={props.loading} type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme </Button> 
+=======
+                  : (<>
+                    {!props.loading
+                      ? <Button type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
+                      : <Button disabled type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
+                    } </>)
+>>>>>>> TTD-creating editprofile screen
                 }
 
                 <div className="a text-center">

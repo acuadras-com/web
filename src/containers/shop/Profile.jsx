@@ -56,7 +56,7 @@ export const Profile = (props) => {
 
                 <Row>
                     <Col lg={8} md={8} sm={12} xs={12} className="div-profile-header">
-                        <div className="profile-picture" style={{ backgroundImage: `url(${shop.profilePicture})` }}></div>
+                        <div className="profile-picture" style={{ backgroundImage: `url(${shop.profilePicture})` }}></div>                        
                     </Col>
                     <Col className="div-profile-header">
                         <Card className="profile-picture">
