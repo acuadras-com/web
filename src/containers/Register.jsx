@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import smartlookClient from 'smartlook-client'
 import { connect } from 'react-redux';
 import ReactGA from 'react-ga';
 import { saveUserToState, registerUser } from '../actions/shopUserAction';
@@ -133,8 +132,8 @@ const Register = (props) => {
       ReactGA.event({
         category: 'Shop',
         action: 'Usuario registrado'
-      });     
-      smartlookClient.pause();
+      });
+      
       props.registerUser({ user, shop })
     }
   }
@@ -203,15 +202,7 @@ const Register = (props) => {
 
                 {passError != ''
                   ? <Button className="form-button-custom" variant="primary" size="lg" block disabled>Registrarme</Button>
-<<<<<<< HEAD
                   : <Button disabled={props.loading} type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme </Button> 
-=======
-                  : (<>
-                    {!props.loading
-                      ? <Button type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
-                      : <Button disabled type="submit" className="form-button-custom" variant="primary" size="lg" block>Registrarme</Button>
-                    } </>)
->>>>>>> TTD-creating editprofile screen
                 }
 
                 <div className="a text-center">
