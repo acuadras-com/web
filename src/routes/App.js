@@ -7,6 +7,7 @@ import Login from '../containers/Login'
 import {Register as CustomerRegister}  from '../containers/customer/Register'
 import NotFound from '../containers/NotFound'
 import Layout from '../components/LayoutComponent/Layout'
+import EditProfile from '../containers/shop/EditProfile'
 import {Profile} from '../containers/shop/Profile'
 import SettingProfile from '../containers/shop/SettingProfile';
 
@@ -23,7 +24,8 @@ const App = () => (
                 <Route exact path="/setting-profile-shop" component={SettingProfile} />
                 <Route exact path="/principal" component={CustomerMain} />
                 <Route exact path="/login" component={Login} />
-                <Route exact path="/terminos" component={TermsAndConditions} />                 
+                <Route exact path="/terminos" component={TermsAndConditions} />
+                <Route exact path="/editar-perfil" component={EditProfile} />                                
                 <Route component={NotFound} />
             </Switch>
         </Layout>

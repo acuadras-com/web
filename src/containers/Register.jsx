@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import smartlookClient from 'smartlook-client'
 import { connect } from 'react-redux';
 import ReactGA from 'react-ga';
 import { saveUserToState, registerUser } from '../actions/shopUserAction';
@@ -133,8 +132,8 @@ const Register = (props) => {
       ReactGA.event({
         category: 'Shop',
         action: 'Usuario registrado'
-      });     
-      smartlookClient.pause();
+      });
+      
       props.registerUser({ user, shop })
     }
   }
