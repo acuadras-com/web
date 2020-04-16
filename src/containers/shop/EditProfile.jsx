@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container'
 import { Row, Col } from 'react-bootstrap'
 import profilePicture from '../../assets/styles/components/shop/carniceria.png'
 import * as Icon from 'react-bootstrap-icons'
-import { Button, Form, Feedback } from 'react-bootstrap'
+import { Button, Form, ListGroup } from 'react-bootstrap'
 import '../../assets/styles/components/shop/EditProfile.scss'
 
 
@@ -29,30 +29,6 @@ const EditProfile = (props) => {
         domicilie: props.domicilie !== undefined && props.domicilie !== '' ? props.domicilie : "Si"
     });
 
-    const SelectOption = () =>{
-        return <Form.Control as="select" value="Choose...">
-        <option>5 a.m</option>
-        <option>6 a.m</option>
-        <option>7 a.m</option>
-        <option>8 a.m</option>
-        <option>9 a.m</option>
-        <option>10 a.m</option>
-        <option>11 a.m</option>
-        <option>12 a.m</option>
-        <option>1 p.m</option>
-        <option>2 p.m</option>
-        <option>3 p.m</option>
-        <option>4 p.m</option>
-        <option>5 p.m</option>
-        <option>6 p.m</option>
-        <option>7 p.m</option>
-        <option>8 p.m</option>
-        <option>9 p.m</option>
-        <option>10 p.m</option>
-        <option>11 p.m</option>
-    </Form.Control>
-    }
-
     return (
         <section className="default-container">
             <section className="no-padding col-xs-12 col-sm-12">
@@ -69,105 +45,21 @@ const EditProfile = (props) => {
             </section>
             <section className="no-padding col-xs-12 col-sm-12">
                 <Container className="shop-section" fluid>
-                    <h4 className="title-information">Información de contacto {shop.nameShop}</h4>
-                    <Form noValidate>
-                        <Form.Row>
-                            <Form.Group className="input-group-custom" as={Col} lg={6} md={6} sm={12} xs={12} >
-                                <Form.Control name="address" className="form-input" type="text" required placeholder="Número de contacto" />
-                                <Form.Control.Feedback type="invalid">
-                                    Por favor ingresa una dirección valida.
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group className="input-group-custom" as={Col} lg={6} md={6} sm={12} xs={12} >
-                                <Form.Control name="address" className="form-input" type="text" required placeholder="Dirección" />
-                                <Form.Control.Feedback type="invalid">
-                                    Por favor ingresa una dirección valida.
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                        </Form.Row>
-                        <h4 className="title-information">Horarios</h4>
-                        <Form.Group as={Row} sm={6} lg={3} xs={6} md={3} >
-                            <Form.Label column sm={2}>
-                                Lunes
-                            </Form.Label>
-                            <Col sm={5}>
-                                <SelectOption />
-                            </Col>
-                            <Col sm={5}>
-                                <SelectOption />
-                            </Col>
-                        </Form.Group>
-                        <Form.Group as={Row} >
-                            <Form.Label column sm={2}>
-                                Martes
-                            </Form.Label>
-                            <Col sm={5}>
-                                <SelectOption />
-                            </Col>
-                            <Col sm={5}>
-                                <SelectOption />
-                            </Col>
-                        </Form.Group>
-                        <Form.Group as={Row} >
-                            <Form.Label column sm={2}>
-                                Miercoles
-                            </Form.Label>
-                            <Col sm={5}>
-                                <SelectOption />                          
-                            </Col>
-                            <Col sm={5}>
-                                <SelectOption />
-                            </Col>
-                        </Form.Group>
-                        <Form.Group as={Row} >
-                            <Form.Label column sm={2}>
-                                Jueves
-                            </Form.Label>
-                            <Col sm={5}>
-                                <SelectOption />
-                            </Col>
-                            <Col sm={5}>
-                                <SelectOption />
-                            </Col>
-                        </Form.Group>
-                        <Form.Group as={Row} >
-                            <Form.Label column sm={2}>
-                                Viernes
-                            </Form.Label>
-                            <Col sm={5}>
-                                <SelectOption />
-                            </Col>
-                            <Col sm={5}>
-                                <SelectOption />
-                            </Col>
-                        </Form.Group>
-                        <Form.Group as={Row} >
-                            <Form.Label column sm={2}>
-                                Sábado
-                            </Form.Label>
-                            <Col sm={5}>
-                                <SelectOption />
-                            </Col>
-                            <Col sm={5}>
-                                <SelectOption />
-                            </Col>
-                        </Form.Group>
-                        <Form.Group as={Row} >
-                            <Form.Label column sm={2}>
-                                Domingo
-                            </Form.Label>
-                            <Col sm={5}>
-                                <SelectOption />
-                            </Col>
-                            <Col sm={5}>
-                                <SelectOption />
-                            </Col>
-                        </Form.Group>
-                        <Button type="submit" className="form-button-custom center edit-button" variant="primary" size="lg" block>Guardar</Button>
-                       
-                    </Form>
-
-
+                    <h4 className="title-information">Editar perfil</h4>
+                    <ListGroup>
+                        <ListGroup.Item action href="/editar-informacion-basica">
+                            Información basica   <Icon.ArrowRight />
+                        </ListGroup.Item>
+                        <ListGroup.Item action href="/editar-horario">
+                            Horarios <Icon.ArrowRight />
+                        </ListGroup.Item>
+                        <ListGroup.Item action href="/editar-categoria" >
+                            Categorías <Icon.ArrowRight />
+                        </ListGroup.Item>
+                    </ListGroup>
+                    <div className="div-action">
+                    <Button type="submit" className="form-button-custom center edit-button" variant="primary" size="lg" block>Guardar</Button>
+                    </div>
                 </Container>
 
             </section>
