@@ -1,8 +1,8 @@
 import React from 'react'
-import { ImaWrapper, Image, Span, DescriptionDiv } from './styles'
+import { Image, DefaultImage, ImageWrapper, Span, RoundButton, LinkStyled, CardStyled} from './styles'
 import { IoMdRadioButtonOn, IoMdRadioButtonOff } from 'react-icons/io'
-import { Container, Row } from 'react-bootstrap'
-import {Link} from 'react-router-dom';
+import Card from 'react-bootstrap/Card'
+
 
 const DEFAULT_IMAGE = 'https://tutenderoshopfiles.s3.us-east-2.amazonaws.com'
 
@@ -12,20 +12,24 @@ export const ShopCard = ({id, photoUrl, name='Nombre Comercio', description='Pro
     
     if(photoUrl === undefined)
     {
-        imgUrl =  DEFAULT_IMAGE +'/pf_'+categories[0]+'_default.jpg';
+        imgUrl =  DEFAULT_IMAGE +'/pf_'+categories[0]+'_default.png';
     }
     
     return (
-        
-        <div class="card" >
-            <Image class="card-img-top" src={imgUrl} alt="Card image cap" />
-            <div class="card-body">
-                <h5 class="card-title">{name}</h5>
-                <p class="card-text">{description} <Span>{open?(<><IoMdRadioButtonOn size='20px' /> Abierto</>):(<><IoMdRadioButtonOff size='20px'/>Cerrado</>)}</Span></p>
-                <Link to={`/perfil-comercio?id=${id}`}>
-                    <div class="btn btn-primary">VER DETALLE</div>
-                </Link>
-            </div>
-        </div>
+        <LinkStyled to={`/perfil-comercio?id=${id}`}>
+            <CardStyled>
+                <ImageWrapper>
+                {photoUrl 
+                    ?<Image class="card-img-top" src={imgUrl} alt="Card image cap" />
+                    :<DefaultImage class="card-img-top" src={imgUrl} alt="Card image cap" />
+                }
+                </ImageWrapper>
+                <Card.Body>
+                    <h5 class="card-title">{name}</h5>
+                    <Card.Text> <Span>{open?(<><IoMdRadioButtonOn size='20px' /> Abierto</>):(<><IoMdRadioButtonOff size='20px'/>Cerrado</>)}</Span></Card.Text>
+                    
+                </Card.Body>
+            </CardStyled>
+        </LinkStyled>
     )
 }

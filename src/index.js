@@ -14,7 +14,39 @@ const initialState = {
     "shop": {},
     "location": {},
     "loading":false,
-    "error": ''
+    "error": '',
+    "categories": [
+        {
+            "id":1,
+            "name": 'Fruver',
+            "icon": '/img/icono-ensalada.jpg',
+            "path":''
+        },
+        {
+            "id":2,
+            "name": 'Drogerias',
+            "icon": '/img/icono_farmacia.JPG',
+            "path":''
+        },
+        {
+            "id":3,
+            "name": 'Menu',
+            "icon": '/img/icono_cheff.png',
+            "path":''
+        },
+        {
+            "id":4,
+            "name": 'Carnicería',
+            "icon": '/img/icono_cheff.png',
+            "path":''
+        },
+        {
+            "id":5,
+            "name": 'Ferrreteria',
+            "icon": '/img/icono_cheff.png',
+            "path":''
+        }
+    ]
 }
 ReactGA.initialize('UA-163455751-1');
 smartlookClient.init('763dcf37c7a980e6e9989d1fb4be0f1f46873618')

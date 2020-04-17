@@ -1,5 +1,8 @@
 import React from 'react'
 import { ShopCard } from '../ShopCard'
+import {DivList, Container} from './styles'
+
+
 
 const shops =  [
     {
@@ -68,8 +71,12 @@ const shops =  [
 
 export const ListOfShopCards = () => {
     return (
-        <div className="card-columns">
-            {shops.map(shop => <ShopCard {...shop} />)}
-        </div>
+        <Container>
+            <DivList>
+            <div className="card-columns">
+                {shops.map(shop => <ShopCard {...shop} />)}
+            </div>
+            </DivList>
+        </Container>
     )
 }
