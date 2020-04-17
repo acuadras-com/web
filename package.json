@@ -20,6 +20,7 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
     "react-bootstrap-icons": "^1.0.1-alpha3",
+    "react-bootstrap-typeahead": "^4.2.0",
     "react-dom": "^16.13.1",
     "react-facebook-login": "^4.1.1",
     "react-ga": "^2.7.0",
