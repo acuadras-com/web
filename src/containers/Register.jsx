@@ -8,8 +8,9 @@ import { InputText } from '../components/basic/Input-Text/InputText'
 import Container from 'react-bootstrap/Container'
 import '../components/basic/Input-Text/InputText.scss'
 import { PasswordRegister } from '../components/basic/Password/PasswordRegister'
-import { Button, Form, Feedback } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
 import {Link} from 'react-router-dom';
+import SearchBar from '../components/map/Autocomplete'
 
 
 const Register = (props) => {
@@ -148,18 +149,6 @@ const Register = (props) => {
   }
 
 
-  const settingLocattion = event => {
-    event.preventDefault();
-
-    let user = buildUser()
-    let shop = buildShop()
-    props.saveUserToState({ user, shop })
-    props.history.push({
-      pathname: "/setting-profile-shop",
-      search: `?lat=${position.latitude}&lng=${position.longitude}`
-    })
-  }
-
   return (
     <section>
       {props.error === 'OK'
@@ -176,12 +165,7 @@ const Register = (props) => {
                 <InputText disabled={props.loading} value={formValues.username} required name="username" gettingValue={handleInput} text="Correo" typeInput="email" />
                 <InputText disabled={props.loading} value={formValues.phone} required name="phone" gettingValue={handleInput} text="Número de Contacto" typeInput="number" />
                 <InputText disabled={props.loading} value={formValues.storeName} required name="storeName" gettingValue={handleInput} text="Nombre de Comercio" typeInput="text" />
-                <Form.Group className="input-group-custom" >
-                  <Form.Control disabled={props.loading} name="address" onClick={settingLocattion} onFocus={settingLocattion} className="form-input" type="text" required value={position.address} placeholder="Ingresa tu dirección" />
-                  <Form.Control.Feedback type="invalid">
-                    Por favor ingresa una dirección valida.
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <SearchBar />
 
                 <PasswordRegister disabled={props.loading} onBlur={handlePassworOut} name="password" nameConfirm="confirmPassword" gettingValue={handleInput} gettingValueConfirm={handleInput} />
                 <span className="spanInputError">{passError}</span>
