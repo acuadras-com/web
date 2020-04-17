@@ -1,6 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import Card from 'react-bootstrap/Card'
-import Form from 'react-bootstrap/Form'
+
 import Button from 'react-bootstrap/Button'
 import CardDeck from 'react-bootstrap/CardDeck'
 import { MainContainer, DivList, Container, SearchContainer, RoundIconContainer } from './styles'
@@ -8,6 +9,7 @@ import { FaToolbox } from 'react-icons/fa'
 import { GiShop } from "react-icons/gi";
 import { useHistory } from "react-router-dom";
 
+import InputLocation from "../../components/basic/InputLocation"
 
 
 
@@ -27,10 +29,8 @@ const SelectService = (props) => {
 
 
         <SearchContainer visible="true">
-        Donde te encuentras?
-                <Form.Group>
-                    <Form.Control name="address" className="form-input" type="text" required placeholder="Ingresa tu dirección" />
-                </Form.Group>
+            Donde te encuentras?
+            <InputLocation />
           Que estas Buscando?
         </SearchContainer>
             <DivList>
@@ -76,4 +76,10 @@ const SelectService = (props) => {
     )
 }
 
-export default SelectService;
+const mapStateToProps = state => {
+  return {
+      ubication: state.ubication
+  }
+  }
+    
+  export default connect(mapStateToProps, null)(SelectService);

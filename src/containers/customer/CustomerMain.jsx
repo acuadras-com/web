@@ -11,9 +11,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
+
 import {Category}  from '../../components/Category'
 import { FaSearch, FaUser } from 'react-icons/fa'
-import { NavDesktop, NavMobile, MainContainer, SearchContainer, SearchInNav } from './styles'
+import { FaToolbox } from 'react-icons/fa'
+import { GiShop } from "react-icons/gi";
+import { NavDesktop, NavMobile, MainContainer, SearchContainer, SearchInNav, RoundIconContainerNav, RowNav } from './styles'
 
 const CustomerMain = (props) => {
     
@@ -107,18 +110,17 @@ const CustomerMain = (props) => {
         </NavMobile>
 
         <NavDesktop>
-            <Navbar bg="light" expand="lg">
+  
+            <Navbar expand="lg">
                 
                 
                 <Nav.Link>
-                    <Category id='1' name= 'Panaderia'
-                                icon= '/img/icono-ensalada.jpg'
-                                path='' />
+                    <RowNav><RoundIconContainerNav><GiShop size="30" /></RoundIconContainerNav></RowNav>
+                    <RowNav>Tiendas</RowNav>
                 </Nav.Link>
                 <Nav.Link>
-                    <Category id='1' name= 'Reposteria'
-                                icon= '/img/icono_cheff.png'
-                                path='' />
+                    <RowNav><RoundIconContainerNav><FaToolbox size="30" /></RoundIconContainerNav></RowNav>
+                    <RowNav>Servicios</RowNav>
                 </Nav.Link>
                 
 

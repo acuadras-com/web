@@ -1,8 +1,11 @@
 import styled, { css } from 'styled-components'
 
 import Form  from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row'
 
-
+export const RowNav = styled(Row)`
+    padding-left: 20px;
+`
 export const NavMobile = styled.div`
     position:fixed;
         top: 65px;
@@ -49,7 +52,18 @@ export const RoundIconContainer = styled.div`
     color: white;
     border-radius: 50%;
     height: 80px;
-    width:80px;
+    width: 80px;
+`
+
+export const RoundIconContainerNav = styled.div`
+    text-align: center;
+    margin: 0 auto;
+    padding-top:10px;
+    background-color: #257400;
+    color: white;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
 `
 
 export const SearchInNav = styled.div`
@@ -77,3 +91,4 @@ export const Container = styled.div`
     max-width:800px;
     background-color:white;
 `
+
