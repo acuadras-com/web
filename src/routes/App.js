@@ -12,7 +12,7 @@ import BasicInformation from '../containers/shop/profile/BasicInformation'
 import Hours from '../containers/shop/profile/Hours'
 import EditCategory from '../containers/shop/profile/EditCategory'
 import {Profile} from '../containers/shop/Profile'
-import SettingProfile from '../containers/shop/SettingProfile';
+
 
 import { CustomerMain } from '../containers/customer/CustomerMain';
 
@@ -24,7 +24,6 @@ const App = () => (
                 <Route exact path="/registro" component={Register} />
                 <Route exact path="/registro-usuario" component={CustomerRegister} />
                 <Route exact path="/perfil-comercio" component={Profile} />
-                <Route exact path="/setting-profile-shop" component={SettingProfile} />
                 <Route exact path="/principal" component={CustomerMain} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/terminos" component={TermsAndConditions} />
