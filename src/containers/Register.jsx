@@ -24,6 +24,7 @@ const Register = (props) => {
     latitude: props.ubication !== undefined ? props.ubication.latitude : 4.60971,
     longitude: props.ubication !== undefined ? props.ubication.longitude : -74.08175
   });
+  
 
   const [formValues, setFormValues] =
     useState({
@@ -165,7 +166,7 @@ const Register = (props) => {
                 <InputText disabled={props.loading} value={formValues.username} required name="username" gettingValue={handleInput} text="Correo" typeInput="email" />
                 <InputText disabled={props.loading} value={formValues.phone} required name="phone" gettingValue={handleInput} text="Número de Contacto" typeInput="number" />
                 <InputText disabled={props.loading} value={formValues.storeName} required name="storeName" gettingValue={handleInput} text="Nombre de Comercio" typeInput="text" />
-                <SearchBar />
+                <SearchBar onPlaceLoaded={setPosition} />
 
                 <PasswordRegister disabled={props.loading} onBlur={handlePassworOut} name="password" nameConfirm="confirmPassword" gettingValue={handleInput} gettingValueConfirm={handleInput} />
                 <span className="spanInputError">{passError}</span>
