@@ -12,6 +12,8 @@ import BasicInformation from '../containers/shop/profile/BasicInformation'
 import Hours from '../containers/shop/profile/Hours'
 import EditCategory from '../containers/shop/profile/EditCategory'
 import {Profile} from '../containers/shop/Profile'
+import MessageList from '../components/Chat/MessageList/MessageList'
+import MessageBox from '../components/Chat/MessageBox/MessageBox'
 
 
 import { CustomerMain } from '../containers/customer/CustomerMain';
@@ -30,7 +32,9 @@ const App = () => (
                 <Route exact path="/editar-perfil" component={EditProfile} />
                 <Route exact path="/editar-informacion-basica" component={BasicInformation} />
                 <Route exact path="/editar-horario" component={Hours} /> 
-                <Route exact path="/editar-categoria" component={EditCategory} />                               
+                <Route exact path="/editar-categoria" component={EditCategory} />
+                <Route exact path="/mensajes" component={MessageList} />
+                <Route exact path="/conversacion" component={MessageBox} />                                               
                 <Route component={NotFound} />
             </Switch>
         </Layout>

@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container'
 import { Row, Col } from 'react-bootstrap'
 import profilePicture from '../../assets/styles/components/shop/carniceria.png'
 import * as Icon from 'react-bootstrap-icons'
-import { Button, Form, ListGroup } from 'react-bootstrap'
+import { Button, ListGroup } from 'react-bootstrap'
 import '../../assets/styles/components/shop/EditProfile.scss'
 
 

@@ -15,7 +15,8 @@ import SearchBar from '../components/map/Autocomplete'
 
 const Register = (props) => {
 
-  ReactGA.pageview("/registro");
+  ReactGA.pageview("/registro");  
+ 
   
 
   const [position, setPosition] = useState({
@@ -38,18 +39,7 @@ const Register = (props) => {
   const [passError, setPassError] =
     useState('');
 
-  const [validated, setValidated] = useState(false);
-
-  if (props.ubication == undefined) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log("Latitude is :", position.coords.latitude);
-      console.log("Longitude is :", position.coords.longitude);
-      setPosition({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      })
-    })
-  }
+  const [validated, setValidated] = useState(false);  
 
   const validatePassword = (targetValue, otherValue) => {
 
@@ -108,12 +98,16 @@ const Register = (props) => {
     }
   }
 
-  const buildShop = () => {
-    return {
-      name: formValues.storeName,
-      storeName: formValues.storeName,
-      phone: formValues.phone
-    }
+  var {address, neighborhood, latitude, longitude} = position 
+  const buildShop = () => { 
+    return { 
+      demographics: { address, neighborhood }, 
+      location: { coordinates: [ latitude, longitude ], 
+        x: latitude, 
+        y: longitude }, 
+      name: formValues.storeName, 
+      storeName: formValues.storeName, 
+      phone: formValues.phone } 
   }
 
   const handleSubmit = event => {
