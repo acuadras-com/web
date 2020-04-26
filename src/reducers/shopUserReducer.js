@@ -1,9 +1,51 @@
 import {SAVE_USER, REGISTER_USER, LOADING, ERROR} from '../types/userTypes'
 
-const reducer = (state, action) => {
+const initialState = {
+    "user": {},
+    "shop": {},
+    "location": {},
+    "loading":false,
+    "error": '',
+    "categories": [
+        {
+            "id":1,
+            "name": 'Fruver',
+            "icon": '/img/icono-ensalada.jpg',
+            "path":''
+        },
+        {
+            "id":2,
+            "name": 'Drogerias',
+            "icon": '/img/icono_farmacia.JPG',
+            "path":''
+        },
+        {
+            "id":3,
+            "name": 'Menu',
+            "icon": '/img/icono_cheff.png',
+            "path":''
+        },
+        {
+            "id":4,
+            "name": 'Carnicería',
+            "icon": '/img/icono_cheff.png',
+            "path":''
+        },
+        {
+            "id":5,
+            "name": 'Ferrreteria',
+            "icon": '/img/icono_cheff.png',
+            "path":''
+        }
+    ]
+}
+
+export const reducer = (state= initialState, action) => {
 
     switch (action.type) {
         case SAVE_USER:
+            console.log(`ubicacion en  reducer`)
+            console.log(action.payload.ubication)
             return  {
                 ...state,
                 user: action.payload.user,
@@ -26,5 +68,3 @@ const reducer = (state, action) => {
             return state
     }
 }
-
-export default reducer;

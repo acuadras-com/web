@@ -14,7 +14,13 @@ import EditCategory from '../containers/shop/profile/EditCategory'
 import {Profile} from '../containers/shop/Profile'
 
 
-import { CustomerMain } from '../containers/customer/CustomerMain';
+import SelectService from '../containers/customer/SelectService';
+import CustomerMain from '../containers/customer/CustomerMain';
+import {Favorites} from '../containers/customer/protecteds/Favorites';
+import {UserNotAuth} from '../containers/UserNotAuth';
+
+import Context from '../Context'
+
 
 const App = () => (
     <BrowserRouter>
@@ -25,7 +31,16 @@ const App = () => (
                 <Route exact path="/registro-usuario" component={CustomerRegister} />
                 <Route exact path="/perfil-comercio" component={Profile} />
                 <Route exact path="/principal" component={CustomerMain} />
+                <Route exact path="/index" component={SelectService} />
                 <Route exact path="/login" component={Login} />
+                <Context.Consumer>
+                    {
+                        ({isAuth}) =>
+                        isAuth
+                        ? <Route exact path="/favorites" component={Favorites} />
+                        : <Route exact path="/favorites" component={UserNotAuth} />     
+                    }
+                </Context.Consumer>            
                 <Route exact path="/terminos" component={TermsAndConditions} />
                 <Route exact path="/editar-perfil" component={EditProfile} />
                 <Route exact path="/editar-informacion-basica" component={BasicInformation} />

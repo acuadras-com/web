@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 
-export const Anchor = styled.a`
+export const Anchor = styled.span`
     display: flex;
     flex-direction: column;
     text-align: center;
     text-decoration: none;
-    width: 75px;
+    width: 35px;
+    font-size: 10px;
 `
 
 export const Image = styled.img`
@@ -15,6 +16,6 @@ export const Image = styled.img`
     height: auto;
     overflow: hidden;
     object-fit: cover;
-    height: 75px;
-    width: 75px;
+    height: 35px;
+    width: 35px;
 `

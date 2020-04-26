@@ -1,7 +1,13 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { connect } from 'react-redux';
 import { ShopCard } from '../ShopCard'
+import { Spinner } from '../Spinner'
+import {DivList, Container} from './styles'
+import { FaRegFrown } from 'react-icons/fa'
+import { FaRegMeh } from 'react-icons/fa'
+import { getShops } from '../../services/shopService';
 
-const shops =  [
+const mockShops =  [
     {
         id:2, 
         photoUrl: 'https://tutenderoshopfiles.s3.us-east-2.amazonaws.com/pf_shop_2.JPG',
@@ -66,10 +72,76 @@ const shops =  [
 
 ]
 
-export const ListOfShopCards = () => {
+const ListOfShopCards = (props) => {
+
+    const [shops, setShops] = useState([])
+    const [error, setError] = useState(false)
+    const [loading, setLoading] = useState(false)
+
+    useEffect (() => {
+        ( async function () {
+            setLoading(true)
+            
+            try {
+                var resp = await getShops(props.ubication, props.category)
+                setShops(resp)
+            } catch(error) {
+                setError(true)
+                console.log(error)
+            }
+            setLoading(false)
+        })();
+    }, [props.ubication, props.category])
+    
+ 
+    const Error = () =>{
+        return <>
+            Error  
+            <FaRegFrown size="200" color="f1f3f5" />
+        </>
+    }
+    const EmptyList = () =>{
+        return <>
+            Lista vacia 
+            <FaRegMeh size="200" color="f1f3f5" />
+        </>
+    }
+
     return (
-        <div className="card-columns">
-            {shops.map(shop => <ShopCard {...shop} />)}
-        </div>
+
+        <Container>
+            <DivList>
+                {shops.length > 0 ?
+                    <div className="card-columns">
+                        {shops.map(shop => <ShopCard key={shop.id} {...shop} />)}
+                    </div>
+                    :(<>
+                        {loading
+                            ? <Spinner />
+                            :<>
+                                {error 
+                                    ?<Error />
+                                    :<EmptyList />
+                                }
+                            </>
+                        }
+                      </>
+                    )
+                }
+            </DivList>
+        </Container>
     )
 }
+
+const mapDispatchToProps = {
+    getShops,
+  }
+
+const mapStateToProps = reducers => {
+    return {
+        ubication: reducers.shopUserReducer.ubication,
+        category: reducers.shopsListReducer.selectedCategory
+    }
+}
+      
+export default connect(mapStateToProps,  mapDispatchToProps)(ListOfShopCards);
