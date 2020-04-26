@@ -14,4 +14,5 @@ export const Container = styled.div`
     text-align: center;
     max-width:1200px;
     background-color:white;
+    min-height: 60vh;
 `

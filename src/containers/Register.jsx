@@ -222,13 +222,13 @@ const mapDispatchToProps = {
   registerUser
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = reducers => {
   return {
-    user: state.user,
-    error: state.error,
-    loading: state.loading,
-    shop: state.shop,
-    ubication: state.ubication
+    user: reducers.shopUserReducer.user,
+    error: reducers.shopUserReducer.error,
+    loading: reducers.shopUserReducer.loading,
+    shop: reducers.shopUserReducer.shop,
+    ubication: reducers.shopUserReducer.ubication
   }
 }
 

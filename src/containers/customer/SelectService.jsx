@@ -76,9 +76,9 @@ const SelectService = (props) => {
     )
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = reducers => {
   return {
-      ubication: state.ubication
+      ubication: reducers.shopUserReducer.ubication
   }
   }
     

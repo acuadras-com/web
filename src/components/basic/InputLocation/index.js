@@ -36,7 +36,7 @@ const InputLocation = (props) => {
 
     return (
          <Form.Group  >
-            <Form.Control name="address" onClick={settingLocattion} onFocus={settingLocattion} type="text" required value={position.address} placeholder="Ingresa tu dirección" />
+            <Form.Control name="address" onClick={settingLocattion} onFocus={settingLocattion} type="text" required defaultValue={position.address} placeholder="Ingresa tu dirección" />
             <Form.Control.Feedback type="invalid">
                 Por favor ingresa una dirección valida.
             </Form.Control.Feedback>
@@ -44,9 +44,9 @@ const InputLocation = (props) => {
         
     )
 }
-const mapStateToProps = state => {
+const mapStateToProps = reducers => {
     return {
-        ubication: state.ubication
+        ubication: reducers.shopUserReducer.ubication
     }
 }
 

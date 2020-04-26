@@ -12,6 +12,11 @@ import SettingProfile from '../containers/shop/SettingProfile';
 
 import SelectService from '../containers/customer/SelectService';
 import CustomerMain from '../containers/customer/CustomerMain';
+import {Favorites} from '../containers/customer/protecteds/Favorites';
+import {UserNotAuth} from '../containers/UserNotAuth';
+
+import Context from '../Context'
+
 
 const App = () => (
     <BrowserRouter>
@@ -25,7 +30,14 @@ const App = () => (
                 <Route exact path="/principal" component={CustomerMain} />
                 <Route exact path="/index" component={SelectService} />
                 <Route exact path="/login" component={Login} />
-                <Route exact path="/terminos" component={TermsAndConditions} />                 
+                <Context.Consumer>
+                    {
+                        ({isAuth}) =>
+                        isAuth
+                        ? <Route exact path="/favorites" component={Favorites} />
+                        : <Route exact path="/favorites" component={UserNotAuth} />     
+                    }
+                </Context.Consumer>            
                 <Route component={NotFound} />
             </Switch>
         </Layout>

@@ -20,12 +20,12 @@ export const ShopCard = ({id, photoUrl, name='Nombre Comercio', description='Pro
             <CardStyled>
                 <ImageWrapper>
                 {photoUrl 
-                    ?<Image class="card-img-top" src={imgUrl} alt="Card image cap" />
-                    :<DefaultImage class="card-img-top" src={imgUrl} alt="Card image cap" />
+                    ?<Image className="card-img-top" src={imgUrl} alt="Card image cap" />
+                    :<DefaultImage className="card-img-top" src={imgUrl} alt="Card image cap" />
                 }
                 </ImageWrapper>
                 <Card.Body>
-                    <h5 class="card-title">{name}</h5>
+                    <h5 className="card-title">{name} {id}</h5>
                     <Card.Text> <Span>{open?(<><IoMdRadioButtonOn size='20px' /> Abierto</>):(<><IoMdRadioButtonOff size='20px'/>Cerrado</>)}</Span></Card.Text>
                     
                 </Card.Body>
